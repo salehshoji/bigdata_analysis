@@ -10,7 +10,7 @@ public class LogProrducer {
     public static void main(String[] args) throws IOException {
 
         // Load producer configuration settings from a local file
-        final Properties props = loadConfig("src/main/resources/getting-started.properties");
+        final Properties props = loadConfig("src/main/resources/prop.properties");
         final String topic = "purchases";
         final Producer producer = new KafkaProducer<>(props);
         File dest = new File("src/main/resources/checked_logs/");

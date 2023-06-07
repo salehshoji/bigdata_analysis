@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d58872b-a43d-4411-8b9b-e4dad1e39cf0" name="Changes" comment="put logs on kafka version 1">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/LogProrducer.java" afterDir="false" />
-    </list>
+    <list default="true" id="2d58872b-a43d-4411-8b9b-e4dad1e39cf0" name="Changes" comment="remove redundant comments" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -98,7 +93,7 @@
       <workItem from="1686055001023" duration="5147000" />
       <workItem from="1686066368481" duration="1636000" />
       <workItem from="1686117216154" duration="337000" />
-      <workItem from="1686119430926" duration="3563000" />
+      <workItem from="1686119430926" duration="3657000" />
     </task>
     <task id="LOCAL-00001" summary="create base project structure">
       <created>1686055095184</created>
@@ -114,7 +109,21 @@
       <option name="project" value="LOCAL" />
       <updated>1686122718906</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="change name of files">
+      <created>1686123006811</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1686123006811</updated>
+    </task>
+    <task id="LOCAL-00004" summary="remove redundant comments">
+      <created>1686123057359</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1686123057359</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -123,6 +132,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="create base project structure" />
     <MESSAGE value="put logs on kafka version 1" />
-    <option name="LAST_COMMIT_MESSAGE" value="put logs on kafka version 1" />
+    <MESSAGE value="change name of files" />
+    <MESSAGE value="remove redundant comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove redundant comments" />
   </component>
 </project>
