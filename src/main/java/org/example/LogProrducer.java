@@ -3,11 +3,10 @@ package org.example;
 import org.apache.kafka.clients.producer.*;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.nio.file.*;
 import java.util.*;
 
-public class Main {
+public class LogProrducer {
     public static void main(String[] args) throws IOException {
 
         // Load producer configuration settings from a local file
