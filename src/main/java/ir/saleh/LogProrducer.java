@@ -25,7 +25,7 @@ public class LogProrducer {
                 continue;
             }
             for (int i = 0; i < logs.length; i++) {
-                String file_data = readfile(logs[i]);
+                String file_data = Files.readString(logs[i].toPath());
                 String log_name = logs[i].getName();
                 ProducerRecord producer_record = new ProducerRecord<>(topic,log_name.substring(0, log_name.indexOf("-")), file_data);
                 producer.send(producer_record);
