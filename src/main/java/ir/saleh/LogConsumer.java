@@ -43,9 +43,9 @@ public class LogConsumer {
                     }
                     componentMap.get(key).add(log);
                     checkLogError(ERRORLIST, key, log);
+                    System.out.println(componentMap);
+                    checkComponentProblems(componentMap);
                 }
-                System.out.println(componentMap);
-                checkComponentProblems(componentMap);
             }
         }
     }
@@ -84,7 +84,10 @@ public class LogConsumer {
         // rule 3
         for (String component : componentMap.keySet()){
             List<Log> logList = componentMap.get(component);
-            if (logList.size() / (ChronoUnit.MINUTES.between(logList.get(0).getDateTime(), logList.get(logList.size() - 1).getDateTime())) > RATELIMIT){
+            if ((ChronoUnit.SECONDS.between(logList.get(0).getDateTime(), logList.get(logList.size() - 1).getDateTime()) == 0)){
+                continue;
+            }
+            if (logList.size() / (ChronoUnit.SECONDS.between(logList.get(0).getDateTime(), logList.get(logList.size() - 1).getDateTime())) > RATELIMIT){
                 // todo send Error to table
                 System.out.println("in component" + component + " reate is "
                         + (logList.size() / (ChronoUnit.MINUTES.between(logList.get(0).getDateTime(), logList.get(logList.size() - 1).getDateTime())))

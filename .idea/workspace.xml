@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d58872b-a43d-4411-8b9b-e4dad1e39cf0" name="Changes" comment="implement rule 2">
+    <list default="true" id="2d58872b-a43d-4411-8b9b-e4dad1e39cf0" name="Changes" comment="implement rule 3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ir/saleh/LogConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/saleh/LogConsumer.java" afterDir="false" />
     </list>
@@ -123,8 +123,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ir.saleh.LogProrducer" />
         <item itemvalue="Application.ir.saleh.LogConsumer" />
+        <item itemvalue="Application.ir.saleh.LogProrducer" />
         <item itemvalue="Application.LogProrducer" />
         <item itemvalue="Application.LogConsumer" />
       </list>
@@ -146,7 +146,7 @@
       <workItem from="1686126347444" duration="548000" />
       <workItem from="1686134907922" duration="2336000" />
       <workItem from="1686142657638" duration="1363000" />
-      <workItem from="1686242934586" duration="5937000" />
+      <workItem from="1686242934586" duration="6663000" />
     </task>
     <task id="LOCAL-00001" summary="create base project structure">
       <created>1686055095184</created>
@@ -239,7 +239,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686235801243</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="implement rule 3">
+      <created>1686236281073</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1686236281073</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -260,6 +267,18 @@
     <MESSAGE value="support multiline logs" />
     <MESSAGE value="support multiline logs in Producer" />
     <MESSAGE value="implement rule 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="implement rule 2" />
+    <MESSAGE value="implement rule 3" />
+    <option name="LAST_COMMIT_MESSAGE" value="implement rule 3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ir/saleh/LogConsumer.java</url>
+          <line>36</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
