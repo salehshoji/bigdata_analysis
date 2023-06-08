@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d58872b-a43d-4411-8b9b-e4dad1e39cf0" name="Changes" comment="implement rule 3">
+    <list default="true" id="2d58872b-a43d-4411-8b9b-e4dad1e39cf0" name="Changes" comment="debug rule 3 implementation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ir/saleh/LogConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/saleh/LogConsumer.java" afterDir="false" />
     </list>
@@ -146,7 +146,7 @@
       <workItem from="1686126347444" duration="548000" />
       <workItem from="1686134907922" duration="2336000" />
       <workItem from="1686142657638" duration="1363000" />
-      <workItem from="1686242934586" duration="6663000" />
+      <workItem from="1686242934586" duration="7515000" />
     </task>
     <task id="LOCAL-00001" summary="create base project structure">
       <created>1686055095184</created>
@@ -246,7 +246,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686236281073</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="debug rule 3 implementation">
+      <created>1686237125916</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1686237125916</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -268,7 +275,8 @@
     <MESSAGE value="support multiline logs in Producer" />
     <MESSAGE value="implement rule 2" />
     <MESSAGE value="implement rule 3" />
-    <option name="LAST_COMMIT_MESSAGE" value="implement rule 3" />
+    <MESSAGE value="debug rule 3 implementation" />
+    <option name="LAST_COMMIT_MESSAGE" value="debug rule 3 implementation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

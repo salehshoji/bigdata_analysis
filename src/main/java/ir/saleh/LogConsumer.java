@@ -14,9 +14,9 @@ import java.util.*;
 
 public class LogConsumer {
 
-    private static final int LIMITMIN = 5;
-    private static final int COUNTLIMIT = 5;
-    private static final int RATELIMIT = 10;
+    private static final int TIMELIMIT = 5; // minutes
+    private static final int COUNTLIMIT = 5; // number in TIMELIMIT
+    private static final int RATELIMIT = 1; // log per minute
 
     public static void main(final String[] args) throws Exception {
         List<String> ERRORLIST = new ArrayList<>(Arrays.asList("ERROR", "WARNING"));
@@ -54,8 +54,7 @@ public class LogConsumer {
         if (ERRORLIST.contains(log.getStatus())){
             // ERROR alert function
             // todo send Error to Table
-            System.out.println(log.getStatus()+ "  " + key + "   " + log + "  ");
-            System.out.println("this is test of datetime  " + log.getDateTime());
+            System.out.println("rule1\n" +log.getStatus()+ "  " + key + "   " + log + " on " + log.getDateTime());
         }
     }
 
@@ -69,13 +68,13 @@ public class LogConsumer {
                 if(startTime == null){
                     startTime = logList.get(i).getDateTime();
                 }else{
-                    while (ChronoUnit.MINUTES.between(startTime, logList.get(i).getDateTime()) > LIMITMIN){
+                    while (ChronoUnit.MINUTES.between(startTime, logList.get(i).getDateTime()) > TIMELIMIT){
                         startIndex += 1;
                         startTime = logList.get(startIndex).getDateTime();
                     }
                     if (i - startIndex > COUNTLIMIT){
                         // todo send Error to Table
-                        System.out.println("in component" + component + "from " + startTime + " to " + logList.get(i).getDateTime() + " we have " + (i - startIndex) + "error");
+                        System.out.println("rule2 \nin component" + component + "from " + startTime + " to " + logList.get(i).getDateTime() + " we have " + (i - startIndex) + "error");
                     }
                 }
             }
@@ -84,12 +83,17 @@ public class LogConsumer {
         // rule 3
         for (String component : componentMap.keySet()){
             List<Log> logList = componentMap.get(component);
-            if ((ChronoUnit.SECONDS.between(logList.get(0).getDateTime(), logList.get(logList.size() - 1).getDateTime()) == 0)){
+            if ((ChronoUnit.MINUTES.between(logList.get(0).getDateTime(), logList.get(logList.size() - 1).getDateTime()) == 0)){
+                if(logList.size() > RATELIMIT){
+                    // todo send Error to table
+                    System.out.println("rule 3\n in component" + component + " rate is "
+                            + (logList.size()) + "in less than minute!!!" + " and its more than " + RATELIMIT);
+                }
                 continue;
             }
-            if (logList.size() / (ChronoUnit.SECONDS.between(logList.get(0).getDateTime(), logList.get(logList.size() - 1).getDateTime())) > RATELIMIT){
+            if (logList.size() / (ChronoUnit.MINUTES.between(logList.get(0).getDateTime(), logList.get(logList.size() - 1).getDateTime())) > RATELIMIT){
                 // todo send Error to table
-                System.out.println("in component" + component + " reate is "
+                System.out.println("rule 3\n in component" + component + " rate is "
                         + (logList.size() / (ChronoUnit.MINUTES.between(logList.get(0).getDateTime(), logList.get(logList.size() - 1).getDateTime())))
                         + " and its more than " + RATELIMIT);
             }
