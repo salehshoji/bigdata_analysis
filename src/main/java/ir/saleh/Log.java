@@ -1,6 +1,8 @@
 package ir.saleh;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 
 public class Log {
     LocalDateTime dateTime;
@@ -46,7 +48,8 @@ public class Log {
 
     public Log(String component, String dateTime, String logNum, String threadName,
                String status, String packageName, String classname, String message) {
-        this.dateTime = LocalDateTime.parse(dateTime);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        this.dateTime = LocalDateTime.parse(dateTime, formatter);
         this.logNum = logNum;
         this.threadName = threadName;
         this.status = status;

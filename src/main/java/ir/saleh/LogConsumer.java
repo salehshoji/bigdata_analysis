@@ -43,6 +43,7 @@ public class LogConsumer {
                 if (ERRORLIST.contains(log.getStatus())){
                     // ERROR alert function
                     System.out.println(log.getStatus()+ "  " + key + "   " + log + "  ");
+                    System.out.println("this is test of datetime  " + log.getDateTime());
                 }
                 System.out.println(all_logs);
                 checkComponentProblems(all_logs);
@@ -61,14 +62,20 @@ public class LogConsumer {
     }
 
     private static Log logCreator(String key, String value) {
-        String datetime = value.substring(0, value.indexOf(","));
+        String datetime = value.substring(0, value.indexOf("."));
+        value = value.substring(value.indexOf(",") + 1);
         String logNum = value.substring(0, value.indexOf(" "));
+        value = value.substring(value.indexOf(' ') + 1);
         String threadName = value.substring(0, value.indexOf(" "));
+        value = value.substring(value.indexOf(' ') + 1);
         String status = value.substring(0, value.indexOf(" "));
+        value = value.substring( value.indexOf(' ') + 1);
         String packageName = value.substring(0, value.indexOf(" "));
+        value = value.substring(value.indexOf(' ') + 1);
         String className = value.substring(0, value.indexOf(" "));
+        value = value.substring(value.indexOf(' ') + 1);
         String message = value.substring(value.indexOf("-") + 2);
-        return new Log(datetime, logNum, threadName, status, packageName, className, message, key);
+        return new Log(key, datetime, logNum, threadName, status, packageName, className, message);
     }
 
 
