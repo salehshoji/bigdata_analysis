@@ -31,18 +31,18 @@ public class LogConsumer {
             for (ConsumerRecord<String, String> record : records) {
                 String key = record.key();
                 String value = record.value();
-                JSONObject log = jsonCreator(key, value);
+                Log log = logCreator(key, value);
                 if (!componentMap.containsKey(key)){
                     componentMap.put(key, componentMap.size());
                     all_logs.add(new ArrayList<>());
                 }
-                all_logs.get(componentMap.get(key)).add(log);
+//                all_logs.get(componentMap.get(key)).add(log);
 
 //                System.out.println(all_logs);
 //                System.out.println(componentMap);
-                if (ERRORLIST.contains(log.get("status"))){
+                if (ERRORLIST.contains(log.getStatus())){
                     // ERROR alert function
-                    System.out.println(log.get("status")+ "  " + key + "   " + log + "  ");
+                    System.out.println(log.getStatus()+ "  " + key + "   " + log + "  ");
                 }
                 System.out.println(all_logs);
                 checkComponentProblems(all_logs);
@@ -60,23 +60,15 @@ public class LogConsumer {
         }
     }
 
-    private static JSONObject jsonCreator(String key, String value) {
-        JSONObject log = new JSONObject();
-        log.put("datetime", value.substring(0, value.indexOf(",")));
-        value = value.substring(value.indexOf(",") + 1);
-        log.put("logNum", value.substring(0, value.indexOf(" ")));
-        value = value.substring(value.indexOf(" ") + 1);
-        log.put("threadName", value.substring(0, value.indexOf(" ")));
-        value = value.substring(value.indexOf(" ") + 1);
-        log.put("status", value.substring(0, value.indexOf(" ")));
-        value = value.substring(value.indexOf(" ") + 1);
-        log.put("packageName", value.substring(0, value.indexOf(" ")));
-        value = value.substring(value.indexOf(" ") + 1);
-        log.put("className", value.substring(0, value.indexOf(" ")));
-        value = value.substring(value.indexOf(" ") + 1);
-        log.put("message", value.substring(value.indexOf("-") + 2));
-        return log;
-
+    private static Log logCreator(String key, String value) {
+        String datetime = value.substring(0, value.indexOf(","));
+        String logNum = value.substring(0, value.indexOf(" "));
+        String threadName = value.substring(0, value.indexOf(" "));
+        String status = value.substring(0, value.indexOf(" "));
+        String packageName = value.substring(0, value.indexOf(" "));
+        String className = value.substring(0, value.indexOf(" "));
+        String message = value.substring(value.indexOf("-") + 2);
+        return new Log(datetime, logNum, threadName, status, packageName, className, message, key);
     }
 
 
