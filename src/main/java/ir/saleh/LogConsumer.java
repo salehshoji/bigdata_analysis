@@ -54,8 +54,8 @@ public class LogConsumer {
         if (ERRORLIST.contains(log.getStatus())){
             // ERROR alert function
             new Alert(key, "first_rule",
-                    "rule1\n" +log.getStatus()+ "  " + key + "   " + log + " on " + log.getDateTime());
-            System.out.println("rule1\n" +log.getStatus()+ "  " + key + "   " + log + " on " + log.getDateTime());
+                    "rule1" +log.getStatus()+ "  " + key + "   " + log + " on " + log.getDateTime());
+//            System.out.println("rule1\n" +log.getStatus()+ "  " + key + "   " + log + " on " + log.getDateTime());
         }
     }
 
@@ -75,8 +75,8 @@ public class LogConsumer {
                     }
                     if (i - startIndex > COUNTLIMIT){
                         new Alert(component, "second_alert",
-                                ("rule2 \nin component" + component + "from " + startTime + " to " + logList.get(i).getDateTime() + " we have " + (i - startIndex) + "error"));
-                        System.out.println("rule2 \nin component" + component + "from " + startTime + " to " + logList.get(i).getDateTime() + " we have " + (i - startIndex) + "error");
+                                ("rule2 in component" + component + "from " + startTime + " to " + logList.get(i).getDateTime() + " we have " + (i - startIndex) + "error"));
+//                        System.out.println("rule2 \nin component" + component + "from " + startTime + " to " + logList.get(i).getDateTime() + " we have " + (i - startIndex) + "error");
                     }
                 }
             }
@@ -88,21 +88,21 @@ public class LogConsumer {
             if ((ChronoUnit.MINUTES.between(logList.get(0).getDateTime(), logList.get(logList.size() - 1).getDateTime()) == 0)){
                 if(logList.size() > RATELIMIT){
                     new Alert(component, "third_rule",
-                            "rule 3\n in component" + component + " rate is "
+                            "rule 3 in component" + component + " rate is "
                                     + (logList.size()) + "in less than minute!!!" + " and its more than " + RATELIMIT);
-                    System.out.println("rule 3\n in component" + component + " rate is "
-                            + (logList.size()) + "in less than minute!!!" + " and its more than " + RATELIMIT);
+//                    System.out.println("rule 3\n in component" + component + " rate is "
+//                            + (logList.size()) + "in less than minute!!!" + " and its more than " + RATELIMIT);
                 }
                 continue;
             }
             if (logList.size() / (ChronoUnit.MINUTES.between(logList.get(0).getDateTime(), logList.get(logList.size() - 1).getDateTime())) > RATELIMIT){
                 new Alert(component, "third_rule",
-                        "rule 3\n in component" + component + " rate is "
+                        "rule 3 in component" + component + " rate is "
                                 + (logList.size() / (ChronoUnit.MINUTES.between(logList.get(0).getDateTime(), logList.get(logList.size() - 1).getDateTime())))
                                 + " and its more than " + RATELIMIT);
-                System.out.println("rule 3\n in component" + component + " rate is "
-                        + (logList.size() / (ChronoUnit.MINUTES.between(logList.get(0).getDateTime(), logList.get(logList.size() - 1).getDateTime())))
-                        + " and its more than " + RATELIMIT);
+//                System.out.println("rule 3\n in component" + component + " rate is "
+//                        + (logList.size() / (ChronoUnit.MINUTES.between(logList.get(0).getDateTime(), logList.get(logList.size() - 1).getDateTime())))
+//                        + " and its more than " + RATELIMIT);
             }
         }
 
