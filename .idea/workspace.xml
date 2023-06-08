@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d58872b-a43d-4411-8b9b-e4dad1e39cf0" name="Changes" comment="connect Alert with database">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/imported/DBTablePrinter.java" afterDir="false" />
+    <list default="true" id="2d58872b-a43d-4411-8b9b-e4dad1e39cf0" name="Changes" comment="remove useless comments">
+      <change afterPath="$PROJECT_DIR$/src/main/java/ir/saleh/Backend.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/saleh/Alert.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/saleh/Alert.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/saleh/LogConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/saleh/LogConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +75,7 @@
       <recent name="org.example" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ir.saleh.LogConsumer">
+  <component name="RunManager" selected="Application.Backend">
     <configuration name="Alert" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ir.saleh.Alert" />
       <module name="sahabino" />
@@ -92,12 +89,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LogConsumer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.example.LogConsumer" />
+    <configuration name="Backend" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ir.saleh.Backend" />
       <module name="sahabino" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.example.*" />
+          <option name="PATTERN" value="ir.saleh.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -146,11 +143,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Backend" />
         <item itemvalue="Application.ir.saleh.LogConsumer" />
         <item itemvalue="Application.ir.saleh.LogProrducer" />
         <item itemvalue="Application.Alert" />
         <item itemvalue="Application.LogProrducer" />
-        <item itemvalue="Application.LogConsumer" />
       </list>
     </recent_temporary>
   </component>
@@ -170,7 +167,7 @@
       <workItem from="1686126347444" duration="548000" />
       <workItem from="1686134907922" duration="2336000" />
       <workItem from="1686142657638" duration="1363000" />
-      <workItem from="1686242934586" duration="19634000" />
+      <workItem from="1686242934586" duration="20577000" />
     </task>
     <task id="LOCAL-00001" summary="create base project structure">
       <created>1686055095184</created>
@@ -312,11 +309,36 @@
       <option name="project" value="LOCAL" />
       <updated>1686249944428</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="improve table showing with imported class">
+      <created>1686254282307</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1686254282307</updated>
+    </task>
+    <task id="LOCAL-00022" summary="remove useless comments">
+      <created>1686254474795</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1686254474795</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="create base project structure" />
@@ -339,7 +361,10 @@
     <MESSAGE value="create Alert class" />
     <MESSAGE value="create Alert objects" />
     <MESSAGE value="connect Alert with database" />
-    <option name="LAST_COMMIT_MESSAGE" value="connect Alert with database" />
+    <MESSAGE value="add Alerts to Alerts table in DB" />
+    <MESSAGE value="improve table showing with imported class" />
+    <MESSAGE value="remove useless comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove useless comments" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
