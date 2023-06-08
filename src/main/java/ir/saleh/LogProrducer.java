@@ -1,4 +1,4 @@
-package org.example;
+package ir.saleh;
 
 import org.apache.kafka.clients.producer.*;
 
@@ -28,8 +28,8 @@ public class LogProrducer {
                 String file_data = readfile(logs[i]);
                 String log_name = logs[i].getName();
                 ProducerRecord producer_record = new ProducerRecord<>(topic,log_name.substring(0, log_name.indexOf("-")), file_data);
-                System.out.println(log_name.substring(0, log_name.indexOf("-")) + "    " + file_data);
                 producer.send(producer_record);
+                System.out.println(log_name.substring(0, log_name.indexOf("-")) + "    " + file_data);
             }
 
             //move checked files
