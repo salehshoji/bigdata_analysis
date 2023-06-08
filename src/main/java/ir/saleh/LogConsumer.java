@@ -1,6 +1,5 @@
 package ir.saleh;
 import org.apache.kafka.clients.consumer.*;
-import org.json.simple.JSONObject;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -19,8 +18,7 @@ public class LogConsumer {
         // Reusing the loadConfig method from the ProducerExample class
         final Properties props = loadConfig("src/main/resources/prop.properties");
 
-        List<List<JSONObject>> all_logs = new ArrayList<>();
-        Map<String, Integer> componentMap = new HashMap();
+        Map<String, List<Log>> componentMap = new HashMap();
 
         props.put(ConsumerConfig.GROUP_ID_CONFIG, "kafka-java-getting-started");
         props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
@@ -31,34 +29,30 @@ public class LogConsumer {
             for (ConsumerRecord<String, String> record : records) {
                 String key = record.key();
                 String value = record.value();
-                Log log = logCreator(key, value);
-                if (!componentMap.containsKey(key)){
-                    componentMap.put(key, componentMap.size());
-                    all_logs.add(new ArrayList<>());
+                for (String line : value.lines().toList()) {
+                    Log log = logCreator(key, line);
+                    if (!componentMap.containsKey(key)) {
+                        componentMap.put(key, new ArrayList<>());
+                    }
+                    componentMap.get(key).add(log);
+                    checkLogError(ERRORLIST, key, log);
                 }
-//                all_logs.get(componentMap.get(key)).add(log);
-
-//                System.out.println(all_logs);
-//                System.out.println(componentMap);
-                if (ERRORLIST.contains(log.getStatus())){
-                    // ERROR alert function
-                    System.out.println(log.getStatus()+ "  " + key + "   " + log + "  ");
-                    System.out.println("this is test of datetime  " + log.getDateTime());
-                }
-                System.out.println(all_logs);
-                checkComponentProblems(all_logs);
+                System.out.println(componentMap);
+                checkComponentProblems(componentMap);
             }
         }
     }
 
-    private static void checkComponentProblems(List<List<JSONObject>> allLogs) {
-        for (int i = 0; i < allLogs.size(); i++) {
-            List data_time = new ArrayList();
-            for(JSONObject log : allLogs.get(i)){
-                data_time.add(log.get("datetime"));
-            }
-            System.out.println(data_time);
+    private static void checkLogError(List<String> ERRORLIST, String key, Log log) {
+        if (ERRORLIST.contains(log.getStatus())){
+            // ERROR alert function
+            System.out.println(log.getStatus()+ "  " + key + "   " + log + "  ");
+            System.out.println("this is test of datetime  " + log.getDateTime());
         }
+    }
+
+    private static void checkComponentProblems(Map<String, List<Log>> componentMap) {
+        //todo    check role 2 & 3
     }
 
     private static Log logCreator(String key, String value) {
