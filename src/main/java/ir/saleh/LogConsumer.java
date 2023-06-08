@@ -53,7 +53,8 @@ public class LogConsumer {
     private static void checkLogError(List<String> ERRORLIST, String key, Log log) {
         if (ERRORLIST.contains(log.getStatus())){
             // ERROR alert function
-            // todo send Error to Table
+            new Alert(key, "first_rule",
+                    "rule1\n" +log.getStatus()+ "  " + key + "   " + log + " on " + log.getDateTime());
             System.out.println("rule1\n" +log.getStatus()+ "  " + key + "   " + log + " on " + log.getDateTime());
         }
     }
@@ -73,7 +74,8 @@ public class LogConsumer {
                         startTime = logList.get(startIndex).getDateTime();
                     }
                     if (i - startIndex > COUNTLIMIT){
-                        // todo send Error to Table
+                        new Alert(component, "second_alert",
+                                ("rule2 \nin component" + component + "from " + startTime + " to " + logList.get(i).getDateTime() + " we have " + (i - startIndex) + "error"));
                         System.out.println("rule2 \nin component" + component + "from " + startTime + " to " + logList.get(i).getDateTime() + " we have " + (i - startIndex) + "error");
                     }
                 }
@@ -85,14 +87,19 @@ public class LogConsumer {
             List<Log> logList = componentMap.get(component);
             if ((ChronoUnit.MINUTES.between(logList.get(0).getDateTime(), logList.get(logList.size() - 1).getDateTime()) == 0)){
                 if(logList.size() > RATELIMIT){
-                    // todo send Error to table
+                    new Alert(component, "third_rule",
+                            "rule 3\n in component" + component + " rate is "
+                                    + (logList.size()) + "in less than minute!!!" + " and its more than " + RATELIMIT);
                     System.out.println("rule 3\n in component" + component + " rate is "
                             + (logList.size()) + "in less than minute!!!" + " and its more than " + RATELIMIT);
                 }
                 continue;
             }
             if (logList.size() / (ChronoUnit.MINUTES.between(logList.get(0).getDateTime(), logList.get(logList.size() - 1).getDateTime())) > RATELIMIT){
-                // todo send Error to table
+                new Alert(component, "third_rule",
+                        "rule 3\n in component" + component + " rate is "
+                                + (logList.size() / (ChronoUnit.MINUTES.between(logList.get(0).getDateTime(), logList.get(logList.size() - 1).getDateTime())))
+                                + " and its more than " + RATELIMIT);
                 System.out.println("rule 3\n in component" + component + " rate is "
                         + (logList.size() / (ChronoUnit.MINUTES.between(logList.get(0).getDateTime(), logList.get(logList.size() - 1).getDateTime())))
                         + " and its more than " + RATELIMIT);
