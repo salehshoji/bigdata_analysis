@@ -7,10 +7,15 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 
 public class LogConsumer {
+
+    private static final int LIMITMIN = 5;
+    private static final int COUNTLIMIT = 5;
     public static void main(final String[] args) throws Exception {
         List<String> ERRORLIST = new ArrayList<>(Arrays.asList("ERROR", "WARNING"));
         final String topic = "purchases";
@@ -46,13 +51,35 @@ public class LogConsumer {
     private static void checkLogError(List<String> ERRORLIST, String key, Log log) {
         if (ERRORLIST.contains(log.getStatus())){
             // ERROR alert function
+            // todo send Error to Table
             System.out.println(log.getStatus()+ "  " + key + "   " + log + "  ");
             System.out.println("this is test of datetime  " + log.getDateTime());
         }
     }
 
     private static void checkComponentProblems(Map<String, List<Log>> componentMap) {
-        //todo    check role 2 & 3
+        // rule 2
+        for (String component : componentMap.keySet()) {
+            List<Log> logList = componentMap.get(component);
+            LocalDateTime startTime = null;
+            int startIndex = 0;
+            for (int i = 0; i < logList.size(); i++) {
+                if(startTime == null){
+                    startTime = logList.get(i).getDateTime();
+                }else{
+                    while (ChronoUnit.MINUTES.between(startTime, logList.get(i).getDateTime()) > LIMITMIN){
+                        startIndex += 1;
+                        startTime = logList.get(startIndex).getDateTime();
+                    }
+                    if (i - startIndex > COUNTLIMIT){
+                        // todo send Error to Table
+                        System.out.println("from " + startTime + " to " + logList.get(i).getDateTime() + " we have " + (i - startIndex) + "error");
+                    }
+                }
+            }
+        }
+
+
     }
 
     private static Log logCreator(String key, String value) {
