@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d58872b-a43d-4411-8b9b-e4dad1e39cf0" name="Changes" comment="support multiline logs in Producer">
+    <list default="true" id="2d58872b-a43d-4411-8b9b-e4dad1e39cf0" name="Changes" comment="implement rule 2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ir/saleh/LogConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/saleh/LogConsumer.java" afterDir="false" />
     </list>
@@ -146,7 +146,7 @@
       <workItem from="1686126347444" duration="548000" />
       <workItem from="1686134907922" duration="2336000" />
       <workItem from="1686142657638" duration="1363000" />
-      <workItem from="1686242934586" duration="5245000" />
+      <workItem from="1686242934586" duration="5937000" />
     </task>
     <task id="LOCAL-00001" summary="create base project structure">
       <created>1686055095184</created>
@@ -232,7 +232,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686234176975</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="implement rule 2">
+      <created>1686235801243</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1686235801243</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -252,6 +259,7 @@
     <MESSAGE value="debug logCreator method : getting substrings&#10;add datetime formatter to Log.java" />
     <MESSAGE value="support multiline logs" />
     <MESSAGE value="support multiline logs in Producer" />
-    <option name="LAST_COMMIT_MESSAGE" value="support multiline logs in Producer" />
+    <MESSAGE value="implement rule 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="implement rule 2" />
   </component>
 </project>

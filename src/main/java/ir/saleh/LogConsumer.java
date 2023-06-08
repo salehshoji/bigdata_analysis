@@ -16,6 +16,8 @@ public class LogConsumer {
 
     private static final int LIMITMIN = 5;
     private static final int COUNTLIMIT = 5;
+    private static final int RATELIMIT = 10;
+
     public static void main(final String[] args) throws Exception {
         List<String> ERRORLIST = new ArrayList<>(Arrays.asList("ERROR", "WARNING"));
         final String topic = "purchases";
@@ -73,12 +75,22 @@ public class LogConsumer {
                     }
                     if (i - startIndex > COUNTLIMIT){
                         // todo send Error to Table
-                        System.out.println("from " + startTime + " to " + logList.get(i).getDateTime() + " we have " + (i - startIndex) + "error");
+                        System.out.println("in component" + component + "from " + startTime + " to " + logList.get(i).getDateTime() + " we have " + (i - startIndex) + "error");
                     }
                 }
             }
         }
 
+        // rule 3
+        for (String component : componentMap.keySet()){
+            List<Log> logList = componentMap.get(component);
+            if (logList.size() / (ChronoUnit.MINUTES.between(logList.get(0).getDateTime(), logList.get(logList.size() - 1).getDateTime())) > RATELIMIT){
+                // todo send Error to table
+                System.out.println("in component" + component + " reate is "
+                        + (logList.size() / (ChronoUnit.MINUTES.between(logList.get(0).getDateTime(), logList.get(logList.size() - 1).getDateTime())))
+                        + " and its more than " + RATELIMIT);
+            }
+        }
 
     }
 
