@@ -51,16 +51,6 @@ public class Alert {
         String connectionUrl = "jdbc:mysql://localhost:3306/database_saleh";
         Connection conn = DriverManager.getConnection(connectionUrl);
 
-//        String sqlSelectAllPersons = "SELECT * FROM Alerts";
-//        PreparedStatement ps = conn.prepareStatement(sqlSelectAllPersons);
-//        ResultSet rs = ps.executeQuery();
-//        while (rs.next()) {
-//            String id = rs.getString("component");
-//            String name = rs.getString("Alert");
-//            String lastName = rs.getString("message");
-//            System.out.println(id + "||" + name + "||" + lastName);
-//            // do something with the extracted data...
-//        }
     // Just pass the connection and the table name to printTable()
         DBTablePrinter.printTable(conn, "Alerts");
     }
