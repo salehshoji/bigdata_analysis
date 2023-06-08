@@ -4,7 +4,6 @@ import de.tallerik.MySQL;
 import de.tallerik.utils.Result;
 import de.tallerik.utils.Row;
 import de.tallerik.utils.Select;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -20,7 +19,7 @@ public class Backend {
         showAll(sql);
     }
 
-    private static void showAll(@NotNull MySQL sql) {
+    private static void showAll(MySQL sql) {
         // sql.rowSelect();
         Select select = new Select();
         select.setTable("Alerts");
