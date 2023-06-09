@@ -13,8 +13,7 @@ public class FileInjester {
 
         // Load producer configuration settings from a local file
         final Yaml yaml = new Yaml(new Constructor(FileInjesterConf.class));
-        InputStream inputStream = FileInjester.class
-                .getClassLoader()
+        InputStream inputStream = FileInjester.class.getClassLoader()
                 .getResourceAsStream("configs/file-injester.yml");
         FileInjesterConf fileInjesterConf = yaml.load(inputStream);
 
@@ -24,7 +23,7 @@ public class FileInjester {
 
         // open directory and create destination
         File dest = new File(fileInjesterConf.getLogDestPath());
-        if (!dest.exists()){
+        if (!dest.exists()) {
             dest.mkdir();
         }
         File dir = new File(fileInjesterConf.getLogPath());
@@ -42,7 +41,8 @@ public class FileInjester {
                 for (File log : logs) {
                     String file_data = Files.readString(log.toPath());
                     String log_name = log.getName();
-                    ProducerRecord<String, String> producer_record = new ProducerRecord<>(topic, log_name.substring(0, log_name.indexOf("-")), file_data);
+                    ProducerRecord<String, String> producer_record = new ProducerRecord<>
+                            (topic, log_name.substring(0, log_name.indexOf("-")), file_data);
                     producer.send(producer_record);
                     System.out.println(log_name.substring(0, log_name.indexOf("-")) + "    " + file_data);
                 }
