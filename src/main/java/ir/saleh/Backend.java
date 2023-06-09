@@ -22,7 +22,7 @@ public class Backend {
     private static void showAll(MySQL sql) {
         // sql.rowSelect();
         Select select = new Select();
-        select.setTable("Alerts");
+        select.setTable("alerts");
         select.setColumns("*"); // Optional default '*'
         Result res = sql.rowSelect(select);
         List<Row> rowList = res.getRows();

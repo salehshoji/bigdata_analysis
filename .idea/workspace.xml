@@ -4,8 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d58872b-a43d-4411-8b9b-e4dad1e39cf0" name="Changes" comment="remove useless annotate">
+    <list default="true" id="2d58872b-a43d-4411-8b9b-e4dad1e39cf0" name="Changes" comment="add springboot dependencies">
+      <change afterPath="$PROJECT_DIR$/src/main/java/ir/saleh/API.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ir/saleh/AlertRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ir/saleh/MainController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/saleh/Alert.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/saleh/Alert.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/saleh/Backend.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/saleh/Backend.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +46,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -73,47 +83,8 @@
       <recent name="org.example" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Backend">
-    <configuration name="Alert" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ir.saleh.Alert" />
-      <module name="sahabino" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ir.saleh.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Backend" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ir.saleh.Backend" />
-      <module name="sahabino" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ir.saleh.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LogProrducer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.example.LogProrducer" />
-      <module name="sahabino" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.example.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ir.saleh.LogConsumer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Spring Boot.API">
+    <configuration name="LogConsumer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ir.saleh.LogConsumer" />
       <module name="sahabino" />
       <extension name="coverage">
@@ -126,7 +97,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ir.saleh.LogProrducer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="LogProrducer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ir.saleh.LogProrducer" />
       <module name="sahabino" />
       <extension name="coverage">
@@ -139,13 +110,32 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="generated-requests | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" requestIdentifier="#1" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="generated-requests | ##" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" requestIdentifier="##" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="API" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="sahabino" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ir.saleh.API" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ir.saleh.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Backend" />
-        <item itemvalue="Application.ir.saleh.LogConsumer" />
-        <item itemvalue="Application.ir.saleh.LogProrducer" />
-        <item itemvalue="Application.Alert" />
+        <item itemvalue="Application.LogConsumer" />
+        <item itemvalue="Spring Boot.API" />
+        <item itemvalue="HTTP Request.generated-requests | ##" />
         <item itemvalue="Application.LogProrducer" />
+        <item itemvalue="HTTP Request.generated-requests | #1" />
       </list>
     </recent_temporary>
   </component>
@@ -166,6 +156,7 @@
       <workItem from="1686134907922" duration="2336000" />
       <workItem from="1686142657638" duration="1363000" />
       <workItem from="1686242934586" duration="21062000" />
+      <workItem from="1686332003693" duration="3865000" />
     </task>
     <task id="LOCAL-00001" summary="create base project structure">
       <created>1686055095184</created>
@@ -335,7 +326,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686255527010</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="add springboot dependencies">
+      <created>1686320258288</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1686320258288</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -353,7 +351,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="create base project structure" />
     <MESSAGE value="put logs on kafka version 1" />
     <MESSAGE value="change name of files" />
     <MESSAGE value="remove redundant comments" />
@@ -378,7 +375,8 @@
     <MESSAGE value="remove useless comments" />
     <MESSAGE value="create Backend Structure" />
     <MESSAGE value="remove useless annotate" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove useless annotate" />
+    <MESSAGE value="add springboot dependencies" />
+    <option name="LAST_COMMIT_MESSAGE" value="add springboot dependencies" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -390,7 +388,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/ir/saleh/Alert.java</url>
-          <line>17</line>
+          <line>58</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
