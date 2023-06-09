@@ -1,4 +1,4 @@
-package ir.saleh;
+package ir.saleh.injester;
 
 import org.apache.kafka.clients.producer.*;
 import org.yaml.snakeyaml.Yaml;

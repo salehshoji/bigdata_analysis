@@ -1,4 +1,4 @@
-package ir.saleh;
+package ir.saleh.injester;
 
 public class FileInjesterConf {
     private String logPath;
