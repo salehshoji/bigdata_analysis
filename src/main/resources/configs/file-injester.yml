@@ -1,0 +1,4 @@
+logPath: "src/main/resources/log"
+logDestPath: "src/main/resources/checked_logs/"
+topic: "purchases"
+kafkaPropertiesPath: "src/main/resources/configs/prop.properties"

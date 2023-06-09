@@ -33,9 +33,9 @@ services:
     volumes:
       - ./mysql:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD='09381009650'
+      - MYSQL_ROOT_PASSWORD='password'
       - MYSQL_USER='root'
-      - MYSQL_PASSWORD='09381009650'
+      - MYSQL_PASSWORD='password'
       - MYSQL_DATABASE='wordpress
     ports:
       - "3306:3306"

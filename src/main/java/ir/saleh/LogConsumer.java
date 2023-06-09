@@ -1,11 +1,6 @@
 package ir.saleh;
-import org.apache.kafka.clients.consumer.*;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import org.apache.kafka.clients.consumer.*;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -14,16 +9,16 @@ import java.util.*;
 
 public class LogConsumer {
 
-    private static final int TIMELIMIT = 5; // minutes
-    private static final int COUNTLIMIT = 5; // number in TIMELIMIT
-    private static final int RATELIMIT = 1; // log per minute
+    private static final int TIME_LIMIT = 5; // minutes
+    private static final int COUNT_LIMIT = 5; // number in TIME_LIMIT
+    private static final int RATE_LIMIT = 1; // log per minute
 
     public static void main(final String[] args) throws Exception {
         List<String> ERRORLIST = new ArrayList<>(Arrays.asList("ERROR", "WARNING"));
         final String topic = "purchases";
         // Load consumer configuration settings from a local file
         // Reusing the loadConfig method from the ProducerExample class
-        final Properties props = loadConfig("src/main/resources/prop.properties");
+        final Properties props = FileInjester.loadConfig("src/main/resources/prop.properties");
 
         Map<String, List<Log>> componentMap = new HashMap();
 
@@ -69,11 +64,11 @@ public class LogConsumer {
                 if(startTime == null){
                     startTime = logList.get(i).getDateTime();
                 }else{
-                    while (ChronoUnit.MINUTES.between(startTime, logList.get(i).getDateTime()) > TIMELIMIT){
+                    while (ChronoUnit.MINUTES.between(startTime, logList.get(i).getDateTime()) > TIME_LIMIT){
                         startIndex += 1;
                         startTime = logList.get(startIndex).getDateTime();
                     }
-                    if (i - startIndex > COUNTLIMIT){
+                    if (i - startIndex > COUNT_LIMIT){
                         new Alert(component, "second_alert",
                                 ("rule2 in component" + component + "from " + startTime + " to " + logList.get(i).getDateTime() + " we have " + (i - startIndex) + "error"));
 //                        System.out.println("rule2 \nin component" + component + "from " + startTime + " to " + logList.get(i).getDateTime() + " we have " + (i - startIndex) + "error");
@@ -86,20 +81,20 @@ public class LogConsumer {
         for (String component : componentMap.keySet()){
             List<Log> logList = componentMap.get(component);
             if ((ChronoUnit.MINUTES.between(logList.get(0).getDateTime(), logList.get(logList.size() - 1).getDateTime()) == 0)){
-                if(logList.size() > RATELIMIT){
+                if(logList.size() > RATE_LIMIT){
                     new Alert(component, "third_rule",
                             "rule 3 in component" + component + " rate is "
-                                    + (logList.size()) + "in less than minute!!!" + " and its more than " + RATELIMIT);
+                                    + (logList.size()) + "in less than minute!!!" + " and its more than " + RATE_LIMIT);
 //                    System.out.println("rule 3\n in component" + component + " rate is "
 //                            + (logList.size()) + "in less than minute!!!" + " and its more than " + RATELIMIT);
                 }
                 continue;
             }
-            if (logList.size() / (ChronoUnit.MINUTES.between(logList.get(0).getDateTime(), logList.get(logList.size() - 1).getDateTime())) > RATELIMIT){
+            if (logList.size() / (ChronoUnit.MINUTES.between(logList.get(0).getDateTime(), logList.get(logList.size() - 1).getDateTime())) > RATE_LIMIT){
                 new Alert(component, "third_rule",
                         "rule 3 in component" + component + " rate is "
                                 + (logList.size() / (ChronoUnit.MINUTES.between(logList.get(0).getDateTime(), logList.get(logList.size() - 1).getDateTime())))
-                                + " and its more than " + RATELIMIT);
+                                + " and its more than " + RATE_LIMIT);
 //                System.out.println("rule 3\n in component" + component + " rate is "
 //                        + (logList.size() / (ChronoUnit.MINUTES.between(logList.get(0).getDateTime(), logList.get(logList.size() - 1).getDateTime())))
 //                        + " and its more than " + RATELIMIT);
@@ -126,14 +121,4 @@ public class LogConsumer {
     }
 
 
-    public static Properties loadConfig(final String configFile) throws IOException {
-        if (!Files.exists(Paths.get(configFile))) {
-            throw new IOException(configFile + " not found.");
-        }
-        final Properties cfg = new Properties();
-        try (InputStream inputStream = new FileInputStream(configFile)) {
-            cfg.load(inputStream);
-        }
-        return cfg;
-    }
 }
