@@ -11,7 +11,7 @@ import java.util.*;
 public class FileInjester {
     public static void main(String[] args) throws IOException, InterruptedException {
 
-        // Load producer configuration settings from a local file
+        // Load FileInjester configuration settings from a yaml file
         final Yaml yaml = new Yaml(new Constructor(FileInjesterConf.class));
         InputStream inputStream = FileInjester.class.getClassLoader()
                 .getResourceAsStream("configs/file-injester.yml");

@@ -1,0 +1,10 @@
+duration: 5
+countLimit: 5
+rateLimit: 1
+errorList:
+    - "ERROR"
+    - "WARNING"
+topic: "purchases"
+kafkaPropertiesPath: "src/main/resources/configs/prop.properties"
+kafkaGroupIdConfig: "kafka-java-getting-started"
+kafkaAutoOffsetResetConfig: "earliest"
