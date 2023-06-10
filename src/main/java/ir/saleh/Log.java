@@ -54,4 +54,16 @@ public class Log {
         return component;
     }
 
+    @Override
+    public String toString() {
+        return "Log{" +
+                "dateTime=" + dateTime +
+                ", threadName='" + threadName + '\'' +
+                ", status='" + status + '\'' +
+                ", packageName='" + packageName + '\'' +
+                ", classname='" + classname + '\'' +
+                ", message='" + message + '\'' +
+                ", component='" + component + '\'' +
+                '}';
+    }
 }

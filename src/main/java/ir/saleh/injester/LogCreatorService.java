@@ -11,12 +11,14 @@ import java.util.concurrent.BlockingQueue;
 
 public class LogCreatorService implements Runnable {
 
-    private final BlockingQueue<Path> passFilesQueue;
+    private final BlockingQueue<Path> passPathQueue;
     private final BlockingQueue<Log> passLogsQueue;
+    private String logDestPath;
 
-    public LogCreatorService(BlockingQueue<Path> passFilesQueue, BlockingQueue<Log> passLogsQueue) {
-        this.passFilesQueue = passFilesQueue;
+    public LogCreatorService(BlockingQueue<Path> passFilesQueue, BlockingQueue<Log> passLogsQueue, String logDestPath) {
+        this.passPathQueue = passFilesQueue;
         this.passLogsQueue = passLogsQueue;
+        this.logDestPath = logDestPath;
     }
 
 
@@ -25,13 +27,14 @@ public class LogCreatorService implements Runnable {
         while (true) {
             Path logFile;
             try {
-                logFile = passFilesQueue.take();
+                logFile = passPathQueue.take();
                 List<String> lines = Files.readString(logFile).lines().toList();
                 for (String line : lines) {
                     Log log = createLog(logFile.toString().substring(logFile.toString().lastIndexOf("/") + 1,
                             logFile.toString().lastIndexOf("-")), line);
                     passLogsQueue.put(log);
                 }
+                logFile.toFile().renameTo(new File(logDestPath + logFile.getFileName()));
             } catch (IOException | InterruptedException e) {
                 throw new RuntimeException(e);
             }
