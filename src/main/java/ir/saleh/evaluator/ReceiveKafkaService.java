@@ -11,7 +11,7 @@ import java.util.concurrent.BlockingQueue;
 public class ReceiveKafkaService implements Runnable{
     private final BlockingQueue<Log> passLogQueue;
     private final Properties props;
-    private String topic;
+    private final String topic;
 
     public ReceiveKafkaService(BlockingQueue<Log> passLogQueue, Properties props, String topic) {
         this.passLogQueue = passLogQueue;
@@ -28,23 +28,13 @@ public class ReceiveKafkaService implements Runnable{
         while (true) {
             ConsumerRecords<String, Log> records = consumer.poll(Duration.ofMillis(100));
             for (ConsumerRecord<String, Log> record : records) {
-                String componentname = record.key();
                 Log log = record.value();
                 System.out.println(log);
-
-//                for (String line : value.lines().toList()) {
-//                    Log log = logCreator(key, line);
-//                    if (!componentMap.containsKey(key)) {
-//                        componentMap.put(key, new ArrayList<>());
-//                    }
-//                    List<Log> logList = componentMap.get(key);
-//                    logList.add(log);
-//                    checkLogType(key, log);
-//                    while (ChronoUnit.SECONDS.between(logList.get(0).getDateTime(), log.getDateTime()) > DURATION) {
-//                        logList.remove(0);
-//                    }
-//                    checkComponentProblems(logList, key);
-//                }
+                try {
+                    passLogQueue.put(log);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
     }
