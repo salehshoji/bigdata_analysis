@@ -1,7 +1,7 @@
 package ir.saleh.evaluator;
 
 import ir.saleh.Alert;
-import ir.saleh.Log;
+import ir.saleh.log.Log;
 import ir.saleh.injester.FileInjestorMain;
 import org.apache.kafka.clients.consumer.*;
 import org.yaml.snakeyaml.Yaml;

@@ -1,13 +1,9 @@
 package ir.saleh.evaluator;
 
-import ir.saleh.Log;
-import ir.saleh.injester.FileInjestorMain;
+import ir.saleh.log.Log;
 import org.apache.kafka.clients.consumer.*;
 
-import java.nio.file.Path;
 import java.time.Duration;
-import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.BlockingQueue;

@@ -1,6 +1,6 @@
 package ir.saleh.injester;
 
-import ir.saleh.Log;
+import ir.saleh.log.Log;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;

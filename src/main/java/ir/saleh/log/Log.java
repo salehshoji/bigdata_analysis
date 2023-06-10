@@ -1,4 +1,4 @@
-package ir.saleh;
+package ir.saleh.log;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

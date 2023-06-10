@@ -1,6 +1,6 @@
 package ir.saleh.injester;
 
-import ir.saleh.Log;
+import ir.saleh.log.Log;
 
 import java.io.File;
 import java.io.IOException;
