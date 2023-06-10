@@ -4,6 +4,7 @@ package ir.saleh;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
 import imported.*;
 import jakarta.persistence.*;
 
@@ -12,10 +13,6 @@ import jakarta.persistence.*;
 @Table(name = "Alerts")
 public class Alert {
     public static List<Alert> alertsList = new ArrayList<>();
-
-//    public int getId() {
-//        return id;
-//    }
 
     public String getComponentName() {
         return componentName;
@@ -29,10 +26,6 @@ public class Alert {
         return description;
     }
 
-//    public void setId(int id) {
-//        this.id = id;
-//    }
-
     public void setComponentName(String componentName) {
         this.componentName = componentName;
     }
@@ -45,9 +38,6 @@ public class Alert {
         this.description = description;
     }
 
-//    @Id
-//    @GeneratedValue(strategy= GenerationType.AUTO)
-//    int id;
     @Id
     String componentName;
     String alertName;
@@ -80,7 +70,7 @@ public class Alert {
     }
 
     private void checkTable(Connection conn, String alerts) throws SQLException {
-        if(!tableExists(conn, "alerts")){
+        if (!tableExists(conn, "alerts")) {
             String sql = "CREATE TABLE alerts " +
                     "(" +
                     " component_name VARCHAR(255) not NULL, " +
@@ -95,13 +85,13 @@ public class Alert {
         String connectionUrl = "jdbc:mysql://localhost:3306/database_saleh";
         Connection conn = DriverManager.getConnection(connectionUrl);
 
-    // Just pass the connection and the table name to printTable()
+        // Just pass the connection and the table name to printTable()
         DBTablePrinter.printTable(conn, "alerts");
     }
 
     public static boolean tableExists(Connection connection, String tableName) throws SQLException {
         DatabaseMetaData meta = connection.getMetaData();
-        ResultSet resultSet = meta.getTables(null, null, tableName, new String[] {"TABLE"});
+        ResultSet resultSet = meta.getTables(null, null, tableName, new String[]{"TABLE"});
 
         return resultSet.next();
     }

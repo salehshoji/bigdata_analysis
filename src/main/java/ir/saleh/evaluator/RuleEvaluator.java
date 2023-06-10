@@ -2,7 +2,7 @@ package ir.saleh.evaluator;
 
 import ir.saleh.Alert;
 import ir.saleh.Log;
-import ir.saleh.injester.FileInjester;
+import ir.saleh.injester.FileInjestorMain;
 import org.apache.kafka.clients.consumer.*;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
@@ -34,7 +34,7 @@ public class RuleEvaluator {
         ERROR_LIST = ruleEvaluatorconf.getErrorList();
 
         // Load consumer configuration settings from a local file
-        final Properties props = FileInjester.loadConfig(ruleEvaluatorconf.getKafkaPropertiesPath());
+        final Properties props = FileInjestorMain.loadConfig(ruleEvaluatorconf.getKafkaPropertiesPath());
         props.put(ConsumerConfig.GROUP_ID_CONFIG, ruleEvaluatorconf.getKafkaGroupIdConfig());
         props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, ruleEvaluatorconf.getKafkaAutoOffsetResetConfig());
         final Consumer<String, String> consumer = new KafkaConsumer<>(props);
