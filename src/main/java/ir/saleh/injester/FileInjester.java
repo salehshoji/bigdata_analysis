@@ -39,12 +39,12 @@ public class FileInjester {
                 // send log to kafka
                 assert logs != null;
                 for (File log : logs) {
-                    String file_data = Files.readString(log.toPath());
-                    String log_name = log.getName();
-                    ProducerRecord<String, String> producer_record = new ProducerRecord<>
-                            (topic, log_name.substring(0, log_name.indexOf("-")), file_data);
-                    producer.send(producer_record);
-                    System.out.println(log_name.substring(0, log_name.indexOf("-")) + "    " + file_data);
+                    String fileData = Files.readString(log.toPath());
+                    String logName = log.getName();
+                    ProducerRecord<String, String> producerRecord = new ProducerRecord<>
+                            (topic, logName.substring(0, logName.indexOf("-")), fileData);
+                    producer.send(producerRecord);
+                    System.out.println(logName.substring(0, logName.indexOf("-")) + "    " + fileData);
                 }
 
                 //move checked files
