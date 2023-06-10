@@ -37,29 +37,31 @@ public class RuleEvaluator {
         final Properties props = FileInjestorMain.loadConfig(ruleEvaluatorconf.getKafkaPropertiesPath());
         props.put(ConsumerConfig.GROUP_ID_CONFIG, ruleEvaluatorconf.getKafkaGroupIdConfig());
         props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, ruleEvaluatorconf.getKafkaAutoOffsetResetConfig());
-        final Consumer<String, String> consumer = new KafkaConsumer<>(props);
+        final Consumer<String, Log> consumer = new KafkaConsumer<>(props);
         consumer.subscribe(List.of(topic));
 
         Map<String, List<Log>> componentMap = new HashMap<>();
 
         while (true) {
-            ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
-            for (ConsumerRecord<String, String> record : records) {
+            ConsumerRecords<String, Log> records = consumer.poll(Duration.ofMillis(100));
+            for (ConsumerRecord<String, Log> record : records) {
                 String key = record.key();
-                String value = record.value();
-                for (String line : value.lines().toList()) {
-                    Log log = logCreator(key, line);
-                    if (!componentMap.containsKey(key)) {
-                        componentMap.put(key, new ArrayList<>());
-                    }
-                    List<Log> logList = componentMap.get(key);
-                    logList.add(log);
-                    checkLogType(key, log);
-                    while (ChronoUnit.SECONDS.between(logList.get(0).getDateTime(), log.getDateTime()) > DURATION) {
-                        logList.remove(0);
-                    }
-                    checkComponentProblems(logList, key);
-                }
+                Log value = record.value();
+                System.out.println(key);
+                System.out.println(value);
+//                for (String line : value.lines().toList()) {
+//                    Log log = logCreator(key, line);
+//                    if (!componentMap.containsKey(key)) {
+//                        componentMap.put(key, new ArrayList<>());
+//                    }
+//                    List<Log> logList = componentMap.get(key);
+//                    logList.add(log);
+//                    checkLogType(key, log);
+//                    while (ChronoUnit.SECONDS.between(logList.get(0).getDateTime(), log.getDateTime()) > DURATION) {
+//                        logList.remove(0);
+//                    }
+//                    checkComponentProblems(logList, key);
+//                }
             }
         }
     }

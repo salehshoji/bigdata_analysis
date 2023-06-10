@@ -4,7 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d58872b-a43d-4411-8b9b-e4dad1e39cf0" name="Changes" comment="create base RuleEvaluator services" />
+    <list default="true" id="2d58872b-a43d-4411-8b9b-e4dad1e39cf0" name="Changes" comment="refactor log packaging&#10;create log serializer">
+      <change afterPath="$PROJECT_DIR$/src/main/java/ir/saleh/log/LogDeserializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/saleh/evaluator/ReceiveKafkaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/saleh/evaluator/ReceiveKafkaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/saleh/evaluator/RuleEvaluator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/saleh/evaluator/RuleEvaluator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/saleh/injester/FileInjestorMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/saleh/injester/FileInjestorMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/saleh/injester/SendKafkaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/saleh/injester/SendKafkaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/saleh/log/LogSerializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/saleh/log/LogSerializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/configs/prop.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/configs/prop.properties" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -80,7 +89,7 @@
       <recent name="org.example" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.RuleEvaluator">
+  <component name="RunManager" selected="Application.FileInjestorMain">
     <configuration name="FileInjester" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ir.saleh.injester.FileInjester" />
       <module name="sahabino" />
@@ -174,7 +183,7 @@
       <workItem from="1686142657638" duration="1363000" />
       <workItem from="1686242934586" duration="21062000" />
       <workItem from="1686332003693" duration="11902000" />
-      <workItem from="1686399441861" duration="11594000" />
+      <workItem from="1686399441861" duration="12779000" />
     </task>
     <task id="LOCAL-00001" summary="create base project structure">
       <created>1686055095184</created>
@@ -442,7 +451,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686412066737</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="refactor log packaging&#10;create log serializer">
+      <created>1686412426761</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1686412426761</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -460,7 +476,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="debug rule 3 implementation" />
     <MESSAGE value="debug rules methods : divide zero" />
     <MESSAGE value="create Alert class" />
     <MESSAGE value="create Alert objects" />
@@ -485,20 +500,21 @@
     <MESSAGE value="add SendKafkaService" />
     <MESSAGE value="add service manager (FileInjestorMain)" />
     <MESSAGE value="create base RuleEvaluator services" />
-    <option name="LAST_COMMIT_MESSAGE" value="create base RuleEvaluator services" />
+    <MESSAGE value="refactor log packaging&#10;create log serializer" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor log packaging&#10;create log serializer" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/ir/saleh/injester/FileInjestorMain.java</url>
-          <line>37</line>
+          <line>34</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
-      <inline-watch fileUrl="file://$PROJECT_DIR$/src/main/java/ir/saleh/injester/FileInjestorMain.java" line="43">
+      <inline-watch fileUrl="file://$PROJECT_DIR$/src/main/java/ir/saleh/injester/FileInjestorMain.java" line="40">
         <watch expression="watchDirServiceThread" language="JAVA" />
       </inline-watch>
     </watches-manager>

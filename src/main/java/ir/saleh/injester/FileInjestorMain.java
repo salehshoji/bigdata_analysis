@@ -17,7 +17,7 @@ import java.util.concurrent.BlockingQueue;
 public class FileInjestorMain {
     public static void main(String[] args) {
         final Yaml yaml = new Yaml(new Constructor(FileInjesterConf.class));
-        InputStream inputStream = FileInjester.class.getClassLoader()
+        InputStream inputStream = FileInjestorMain.class.getClassLoader()
                 .getResourceAsStream("configs/file-injester.yml");
         FileInjesterConf fileInjesterConf = yaml.load(inputStream);
 

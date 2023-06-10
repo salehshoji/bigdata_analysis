@@ -22,14 +22,15 @@ public class ReceiveKafkaService implements Runnable{
     @Override
     public void run() {
 
-        final Consumer<String, String> consumer = new KafkaConsumer<>(props);
+        final Consumer<String, Log> consumer = new KafkaConsumer<>(props);
         consumer.subscribe(List.of(topic));
 
         while (true) {
-            ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
-            for (ConsumerRecord<String, String> record : records) {
+            ConsumerRecords<String, Log> records = consumer.poll(Duration.ofMillis(100));
+            for (ConsumerRecord<String, Log> record : records) {
                 String componentname = record.key();
-                String value = record.value();
+                Log log = record.value();
+                System.out.println(log);
 
 //                for (String line : value.lines().toList()) {
 //                    Log log = logCreator(key, line);

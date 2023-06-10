@@ -13,6 +13,9 @@ public class Log {
     private String message;
     private String component;
 
+    public Log() {
+    }
+
     public Log(String component, String dateTime, String threadName,
                String status, String packageName, String classname, String message) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");

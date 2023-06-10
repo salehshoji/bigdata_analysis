@@ -21,7 +21,7 @@ public class SendKafkaService implements Runnable{
 
     @Override
     public void run() {
-        Producer<String, String> producer = new KafkaProducer<>(props);
+        Producer<String, Log> producer = new KafkaProducer<>(props);
         while (true){
             Log log = null;
             try {
@@ -29,8 +29,8 @@ public class SendKafkaService implements Runnable{
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            ProducerRecord<String, String> producerRecord = new ProducerRecord<>
-                    (topic, log.getComponent(), log.toString());
+            ProducerRecord<String, Log> producerRecord = new ProducerRecord<>
+                    (topic, log.getComponent(), log);
             producer.send(producerRecord);
         }
 
