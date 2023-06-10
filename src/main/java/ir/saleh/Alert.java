@@ -48,23 +48,18 @@ public class Alert {
         this.alertName = alertName;
         this.description = description;
         alertsList.add(this);
-        try {
-            pushToDatabase(this);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     public Alert() {
     }
 
-    private void pushToDatabase(Alert alert) throws SQLException {
+    public void pushToDatabase() throws SQLException {
         String connectionUrl = "jdbc:mysql://localhost:3306/database_saleh";
         Connection conn = DriverManager.getConnection(connectionUrl);
         checkTable(conn, "alerts");
         Statement stmt = conn.createStatement();
-        String sql = "INSERT INTO alerts VALUES (" + "\"" + alert.componentName + "\"" + ", " + "\"" + alert.alertName +
-                "\"" + ", " + "\"" + alert.description + "\"" + ")";
+        String sql = "INSERT INTO alerts VALUES (" + "\"" + this.componentName + "\"" + ", " + "\"" + this.alertName +
+                "\"" + ", " + "\"" + this.description + "\"" + ")";
         stmt.executeUpdate(sql);
         showDB();
     }
