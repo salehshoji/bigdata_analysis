@@ -3,22 +3,22 @@ package ir.saleh.injester;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
+import java.util.Arrays;
 import java.util.concurrent.BlockingQueue;
 
-public class WatchDirService implements Runnable {
+public class WatchDirService implements Runnable{
 
     private final BlockingQueue<Path> passPathQueue;
-    private final FileInjesterConf fileInjesterConf;
+    private final String logPath;
 
-    public WatchDirService(BlockingQueue<Path> passFilesQueue, FileInjesterConf fileInjesterConf) {
-        this.passPathQueue = passFilesQueue;
-        this.fileInjesterConf = fileInjesterConf;
+    public WatchDirService(BlockingQueue<Path> passPathsQueue, String logPath) {
+        this.passPathQueue = passPathsQueue;
+        this.logPath = logPath;
     }
 
     @Override
     public void run() {
-
-        File dir = new File(fileInjesterConf.getLogPath());
+        File dir = new File(logPath);
 
         WatchService watchService = null;
         try {
@@ -30,6 +30,7 @@ public class WatchDirService implements Runnable {
         }
 
         File[] logs = dir.listFiles();
+//        System.out.println(Arrays.stream(logs).toList());
         assert logs != null;
         for (File log : logs) {
             try {
@@ -45,7 +46,7 @@ public class WatchDirService implements Runnable {
                 key = watchService.take();
                 for (WatchEvent<?> event : key.pollEvents()) {
                     WatchEvent<Path> pathWatchEvent = (WatchEvent<Path>) event;
-                    File log = new File(dir + "/" + pathWatchEvent);
+                    File log = new File(dir + "/" + pathWatchEvent.context());
                     passPathQueue.put(log.toPath());
                 }
                 key.reset();

@@ -15,8 +15,8 @@ public class LogCreatorService implements Runnable {
     private final BlockingQueue<Log> passLogsQueue;
     private String logDestPath;
 
-    public LogCreatorService(BlockingQueue<Path> passFilesQueue, BlockingQueue<Log> passLogsQueue, String logDestPath) {
-        this.passPathQueue = passFilesQueue;
+    public LogCreatorService(BlockingQueue<Path> passPathsQueue, BlockingQueue<Log> passLogsQueue, String logDestPath) {
+        this.passPathQueue = passPathsQueue;
         this.passLogsQueue = passLogsQueue;
         this.logDestPath = logDestPath;
     }
@@ -24,6 +24,10 @@ public class LogCreatorService implements Runnable {
 
     @Override
     public void run() {
+        File dest = new File(logDestPath);
+        if (!dest.exists()) {
+            dest.mkdir();
+        }
         while (true) {
             Path logFile;
             try {
@@ -44,7 +48,7 @@ public class LogCreatorService implements Runnable {
 
     private Log createLog(String component, String logStr) {
         String[] logArray = logStr.split(" ");
-        String datetime = logArray[0] + " " + logArray[1];
+        String datetime = logArray[0] + " " + logArray[1].substring(0, logArray[1].indexOf(','));
         String threadName = logArray[2];
         String status = logArray[3];
         String packageName = logArray[4];

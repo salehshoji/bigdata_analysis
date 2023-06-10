@@ -22,11 +22,16 @@ public class SendKafkaService implements Runnable{
     @Override
     public void run() {
         Producer<String, String> producer = new KafkaProducer<>(props);
-        for (Log log : passLogsQueue) {
+        while (true){
+            Log log = null;
+            try {
+                log = passLogsQueue.take();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             ProducerRecord<String, String> producerRecord = new ProducerRecord<>
-                    (topic, log.toString());
+                    (topic, log.getComponent(), log.toString());
             producer.send(producerRecord);
-
         }
 
     }
