@@ -5,20 +5,18 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 
 public class Log {
-    LocalDateTime dateTime;
-    String logNum;
-    String threadName;
-    String status;
-    String packageName;
-    String classname;
-    String message;
-    String component;
+    private LocalDateTime dateTime;
+    private String threadName;
+    private String status;
+    private String packageName;
+    private String classname;
+    private String message;
+    private String component;
 
-    public Log(String component, String dateTime, String logNum, String threadName,
+    public Log(String component, String dateTime, String threadName,
                String status, String packageName, String classname, String message) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         this.dateTime = LocalDateTime.parse(dateTime, formatter);
-        this.logNum = logNum;
         this.threadName = threadName;
         this.status = status;
         this.packageName = packageName;
@@ -31,9 +29,6 @@ public class Log {
         return dateTime;
     }
 
-    public String getLogNum() {
-        return logNum;
-    }
 
     public String getThreadName() {
         return threadName;

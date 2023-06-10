@@ -122,7 +122,7 @@ public class RuleEvaluator {
         String className = value.substring(0, value.indexOf(" "));
         value = value.substring(value.indexOf(' ') + 1);
         String message = value.substring(value.indexOf("-") + 2);
-        return new Log(key, datetime, logNum, threadName, status, packageName, className, message);
+        return new Log(key, datetime, threadName, status, packageName, className, message);
     }
 
 

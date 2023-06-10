@@ -23,7 +23,7 @@ public class FileInjester {
         final Properties props = loadConfig(fileInjesterConf.getKafkaPropertiesPath());
         final String topic = fileInjesterConf.getTopic();
         final Producer<String, String> producer = new KafkaProducer<>(props);
-        BlockingQueue<File> passFilesQueue = new ArrayBlockingQueue<>(10_000);
+        BlockingQueue<File> passPathQueue = new ArrayBlockingQueue<>(10_000);
 
         // open directory and create destination
         File dest = new File(fileInjesterConf.getLogDestPath());
