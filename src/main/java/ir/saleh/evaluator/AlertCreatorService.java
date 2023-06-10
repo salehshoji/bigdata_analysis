@@ -11,22 +11,21 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.BlockingQueue;
 
-public class AlertCreatorService implements Runnable{
+public class AlertCreatorService implements Runnable {
 
     private final float duration; // second
     private final float countLimit; // number in TIME_LIMIT
     private final float rateLimit; // log per second
     private final List<String> errorList;
     private final BlockingQueue<Log> passLogQueue;
-    private final BlockingQueue<Log> passAlertQueue;
+    private final BlockingQueue<Alert> passAlertQueue;
 
     private final Map<String, List<Log>> componentMap;
 
 
-    private static float DURATION;
 
-
-    public AlertCreatorService(float duration, float countLimit, float rateLimit, List<String> errorList, BlockingQueue<Log> passLogQueue, BlockingQueue<Log> passAlertQueue) {
+    public AlertCreatorService(float duration, float countLimit, float rateLimit, List<String> errorList,
+                               BlockingQueue<Log> passLogQueue, BlockingQueue<Alert> passAlertQueue) {
         this.duration = duration;
         this.countLimit = countLimit;
         this.rateLimit = rateLimit;
@@ -42,15 +41,15 @@ public class AlertCreatorService implements Runnable{
             try {
                 Log log = passLogQueue.take();
                 if (!componentMap.containsKey(log.getComponent())) {
-                        componentMap.put(log.getComponent(), new ArrayList<>());
-                    }
-                    List<Log> logList = componentMap.get(log.getComponent());
-                    logList.add(log);
-                    checkLogType(log.getComponent(), log);
-                    while (ChronoUnit.SECONDS.between(logList.get(0).getDateTime(), log.getDateTime()) > DURATION) {
-                        logList.remove(0);
-                    }
-                    checkComponentProblems(logList, log.getComponent());
+                    componentMap.put(log.getComponent(), new ArrayList<>());
+                }
+                List<Log> logList = componentMap.get(log.getComponent());
+                logList.add(log);
+                checkLogType(log.getComponent(), log);
+                while (ChronoUnit.SECONDS.between(logList.get(0).getDateTime(), log.getDateTime()) > duration) {
+                    logList.remove(0);
+                }
+                checkComponentProblems(logList, log.getComponent());
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -58,16 +57,16 @@ public class AlertCreatorService implements Runnable{
     }
 
 
-    private void checkLogType(String key, Log log) {
+    private void checkLogType(String key, Log log) throws InterruptedException {
         if (errorList.contains(log.getStatus())) {
             // ERROR alert function
-            new Alert(key, "first_rule",
-                    "rule1" + log.getStatus() + "  " + key + "   " + log + " on " + log.getDateTime());
-
+            Alert alert =new Alert(key, "first_rule",
+                    "rule1" + log.getStatus() + "  " + key + "   " + log.getMessage() + " on " + log.getDateTime());
+            passAlertQueue.put(alert);
         }
     }
 
-    private void checkComponentProblems(List<Log> logList, String component) {
+    private void checkComponentProblems(List<Log> logList, String component) throws InterruptedException {
         // rule 2
         LocalDateTime startTime = null;
         int startIndex = 0;
@@ -75,14 +74,15 @@ public class AlertCreatorService implements Runnable{
             if (startTime == null) {
                 startTime = logList.get(i).getDateTime();
             } else {
-                while (ChronoUnit.SECONDS.between(startTime, logList.get(i).getDateTime()) > DURATION) {
+                while (ChronoUnit.SECONDS.between(startTime, logList.get(i).getDateTime()) > duration) {
                     startIndex += 1;
                     startTime = logList.get(startIndex).getDateTime();
                 }
                 if (i - startIndex > countLimit) {
-                    new Alert(component, "second_alert",
+                    Alert alert = new Alert(component, "second_alert",
                             ("rule2 in component" + component + "from " + startTime + " to "
                                     + logList.get(i).getDateTime() + " we have " + (i - startIndex) + "error"));
+                    passAlertQueue.put(alert);
                 }
             }
         }
@@ -95,10 +95,11 @@ public class AlertCreatorService implements Runnable{
                                 + (logList.size()) + "in less than second!!!" + " and its more than " + rateLimit);
             }
         } else if (logList.size() / (ChronoUnit.SECONDS.between(logList.get(0).getDateTime(), logList.get(logList.size() - 1).getDateTime())) > rateLimit) {
-            new Alert(component, "third_rule",
+            Alert alert = new Alert(component, "third_rule",
                     "rule 3 in component" + component + " rate is "
                             + (logList.size() / (ChronoUnit.SECONDS.between(logList.get(0).getDateTime(), logList.get(logList.size() - 1).getDateTime())))
                             + " and its more than " + rateLimit);
+            passAlertQueue.put(alert);
         }
 
     }
