@@ -14,6 +14,19 @@ public class Log {
     String message;
     String component;
 
+    public Log(String component, String dateTime, String logNum, String threadName,
+               String status, String packageName, String classname, String message) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        this.dateTime = LocalDateTime.parse(dateTime, formatter);
+        this.logNum = logNum;
+        this.threadName = threadName;
+        this.status = status;
+        this.packageName = packageName;
+        this.classname = classname;
+        this.message = message;
+        this.component = component;
+    }
+
     public LocalDateTime getDateTime() {
         return dateTime;
     }
@@ -46,16 +59,4 @@ public class Log {
         return component;
     }
 
-    public Log(String component, String dateTime, String logNum, String threadName,
-               String status, String packageName, String classname, String message) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        this.dateTime = LocalDateTime.parse(dateTime, formatter);
-        this.logNum = logNum;
-        this.threadName = threadName;
-        this.status = status;
-        this.packageName = packageName;
-        this.classname = classname;
-        this.message = message;
-        this.component = component;
-    }
 }

@@ -1,5 +1,6 @@
 package ir.saleh.injester;
 
+import ir.saleh.Log;
 import org.apache.kafka.clients.producer.*;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
@@ -7,6 +8,8 @@ import org.yaml.snakeyaml.constructor.Constructor;
 import java.io.*;
 import java.nio.file.*;
 import java.util.*;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 
 public class FileInjester {
     public static void main(String[] args) throws IOException, InterruptedException {
@@ -20,6 +23,7 @@ public class FileInjester {
         final Properties props = loadConfig(fileInjesterConf.getKafkaPropertiesPath());
         final String topic = fileInjesterConf.getTopic();
         final Producer<String, String> producer = new KafkaProducer<>(props);
+        BlockingQueue<File> passFilesQueue = new ArrayBlockingQueue<>(10_000);
 
         // open directory and create destination
         File dest = new File(fileInjesterConf.getLogDestPath());
