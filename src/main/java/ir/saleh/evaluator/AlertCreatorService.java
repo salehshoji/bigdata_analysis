@@ -13,6 +13,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.BlockingQueue;
 
+/**
+ * AlertCreatorService gets logs from queue
+ * processes logs and creates alerts
+ * puts alerts to queue
+ */
 public class AlertCreatorService extends Thread {
 
     private static final Logger logger = LoggerFactory.getLogger(AlertCreatorService.class);
@@ -50,11 +55,13 @@ public class AlertCreatorService extends Thread {
                 }
                 List<Log> logList = componentMap.get(log.getComponent());
                 logList.add(log);
-                checkLogType(log.getComponent(), log);
+                checkLogType(log);
                 while (ChronoUnit.SECONDS.between(logList.get(0).getDateTime(), log.getDateTime()) > duration) {
                     logList.remove(0);
                 }
-                checkComponentProblems(logList, log.getComponent());
+                checkCountLimit(logList, log.getComponent());
+                checkRate(logList, log.getComponent());
+
             } catch (InterruptedException e) {
                 interrupt();
                 logger.info("AlertCreatorService interrupted");
@@ -62,17 +69,27 @@ public class AlertCreatorService extends Thread {
         }
     }
 
-
-    private void checkLogType(String key, Log log) throws InterruptedException {
+    /**
+     * checks first rule for input log
+     * @param log
+     * @throws InterruptedException
+     */
+    private void checkLogType(Log log) throws InterruptedException {
         if (errorList.contains(log.getStatus())) {
             // ERROR alert function
-            Alert alert =new Alert(key, "first_rule ",
-                    "rule1 "+ key + log.getStatus() + "  " + "   " + log.getMessage() + " on " + log.getDateTime());
+            Alert alert =new Alert(log.getComponent(), "first_rule ",
+                    "rule1 "+ log.getComponent() + log.getStatus() + "  " + "   " + log.getMessage() + " on " + log.getDateTime());
             passAlertQueue.put(alert);
         }
     }
 
-    private void checkComponentProblems(List<Log> logList, String component) throws InterruptedException {
+    /**
+     * checks second rules for input log list
+     * @param logList
+     * @param component
+     * @throws InterruptedException
+     */
+    private void checkCountLimit(List<Log> logList, String component) throws InterruptedException {
         // rule 2
         LocalDateTime startTime = null;
         int startIndex = 0;
@@ -92,7 +109,15 @@ public class AlertCreatorService extends Thread {
                 }
             }
         }
+    }
 
+    /**
+     * checks third rule for input log list
+     * @param logList
+     * @param component
+     * @throws InterruptedException
+     */
+    private void checkRate(List<Log> logList, String component) throws InterruptedException {
         // rule 3
         if ((ChronoUnit.MINUTES.between(logList.get(0).getDateTime(), logList.get(logList.size() - 1).getDateTime()) == 0)) {
             if (logList.size() > rateLimit) {
@@ -100,13 +125,12 @@ public class AlertCreatorService extends Thread {
                         "rule 3 in component" + component + " rate is "
                                 + (logList.size()) + "in less than second!!!" + " and its more than " + rateLimit);
             }
-        } else if ((float)logList.size() / (ChronoUnit.MINUTES.between(logList.get(0).getDateTime(), logList.get(logList.size() - 1).getDateTime())) > rateLimit) {
+        } else if ((float) logList.size() / (ChronoUnit.MINUTES.between(logList.get(0).getDateTime(), logList.get(logList.size() - 1).getDateTime())) > rateLimit) {
             Alert alert = new Alert(component, "third_rule",
                     "rule 3 in component" + component + " rate is "
                             + (logList.size() / (ChronoUnit.MINUTES.between(logList.get(0).getDateTime(), logList.get(logList.size() - 1).getDateTime())))
                             + " and its more than " + rateLimit);
             passAlertQueue.put(alert);
         }
-
     }
 }
