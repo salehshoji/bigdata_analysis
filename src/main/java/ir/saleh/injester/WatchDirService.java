@@ -27,7 +27,7 @@ public class WatchDirService extends Thread{
     @Override
     public void run() {
         File dir = new File(logPath);
-
+        logger.info("WatchDirService starting...");
         WatchService watchService = null;
         try {
             watchService = FileSystems.getDefault().newWatchService();
@@ -42,13 +42,14 @@ public class WatchDirService extends Thread{
         for (File log : logs) {
             try {
                 passPathQueue.put(log.toPath());
+                logger.info("put file to queue");
+                logger.debug("put file to queue");
             } catch (InterruptedException e) {
                 this.interrupt();
                 logger.info("WatchDirService interrupted");
             }
         }
 
-        logger.info("WatchDirService starting...");
         WatchKey key;
         try {
             while (!isInterrupted()) {
@@ -56,7 +57,7 @@ public class WatchDirService extends Thread{
                 for (WatchEvent<?> event : key.pollEvents()) {
                     WatchEvent<Path> pathWatchEvent = (WatchEvent<Path>) event;
                     File log = new File(dir + "/" + pathWatchEvent.context());
-                    logger.info("put file to queue");
+                    logger.debug("put file to queue");
                     passPathQueue.put(log.toPath());
                 }
                 key.reset();
