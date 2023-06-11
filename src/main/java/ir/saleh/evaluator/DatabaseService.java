@@ -7,6 +7,10 @@ import org.slf4j.LoggerFactory;
 import java.sql.SQLException;
 import java.util.concurrent.BlockingQueue;
 
+/**
+ * reads alerts from queue
+ * saves alerts to database
+ */
 public class DatabaseService extends Thread{
 
     private static final Logger logger = LoggerFactory.getLogger(AlertCreatorService.class);
