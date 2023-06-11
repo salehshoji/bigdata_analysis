@@ -1,3 +1,5 @@
+package testInjester;
+
 import ir.saleh.injester.WatchDirService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -25,6 +27,11 @@ public class WatchDirServiceTest {
         Assertions.assertEquals(passPathQueue.size(), 6);
     }
 
+    /**
+     *
+     * checks adding new files to Queue
+     * @throws InterruptedException
+     */
     @Test
     void checkAddingNewFile() throws InterruptedException {
         BlockingQueue<Path> passPathQueue = new ArrayBlockingQueue<>(10_000);

@@ -65,7 +65,7 @@ public class LogCreatorService extends Thread{
      * @param logStr
      * @return Log
      */
-    private Log createLog(String component, String logStr) {
+    public Log createLog(String component, String logStr) {
         String[] logArray = logStr.split(" ");
         String datetime = logArray[0] + " " + logArray[1].substring(0, logArray[1].indexOf(','));
         String threadName = logArray[2];

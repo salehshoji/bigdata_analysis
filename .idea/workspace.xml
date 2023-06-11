@@ -4,17 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d58872b-a43d-4411-8b9b-e4dad1e39cf0" name="Changes" comment="DatabaseService: javadoc">
-      <change afterPath="$PROJECT_DIR$/src/test/java/WatchDirServiceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/log/comp1-2023_06_07-10_12_16.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/log/comp1-2023_06_07-10_12_17.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/log/comp1-2023_06_07-10_12_21.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/log/comp2-2023_06_07-10_12_23.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/log/comp3-2023_06_07-10_12_05.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/log/comp3-2023_06_07-10_12_14.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/logSource/comp3-2023_06_07-10_12_19.log" afterDir="false" />
+    <list default="true" id="2d58872b-a43d-4411-8b9b-e4dad1e39cf0" name="Changes" comment="test WatchDirService Operation">
+      <change afterPath="$PROJECT_DIR$/src/test/java/testInjester/LogCreatorTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/saleh/injester/WatchDirService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/saleh/injester/WatchDirService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/saleh/injester/LogCreatorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/saleh/injester/LogCreatorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/WatchDirServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/testInjester/WatchDirServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/log/comp1-2023_06_07-10_12_16.log" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +88,7 @@
       <recent name="org.example" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.WatchDirServiceTest.checkAddingNewFile">
+  <component name="RunManager" selected="JUnit.LogCreatorTest.createLogTest">
     <configuration name="FileInjestorMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ir.saleh.injester.FileInjestorMain" />
       <module name="sahabino" />
@@ -107,23 +102,42 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RuleEvaluatorMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ir.saleh.evaluator.RuleEvaluatorMain" />
+    <configuration name="LogCreatorTest.createLogTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="sahabino" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ir.saleh.evaluator.*" />
+          <option name="PATTERN" value="testInjester.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="testInjester" />
+      <option name="MAIN_CLASS_NAME" value="testInjester.LogCreatorTest" />
+      <option name="METHOD_NAME" value="createLogTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LogCreatorTest.processLogFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="sahabino" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="testInjester.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="testInjester" />
+      <option name="MAIN_CLASS_NAME" value="testInjester.LogCreatorTest" />
+      <option name="METHOD_NAME" value="processLogFile" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="WatchDirServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="sahabino" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="WatchDirServiceTest" />
+      <option name="PACKAGE_NAME" value="testInjester" />
+      <option name="MAIN_CLASS_NAME" value="testInjester.WatchDirServiceTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -131,34 +145,21 @@
     </configuration>
     <configuration name="WatchDirServiceTest.checkAddingNewFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="sahabino" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="WatchDirServiceTest" />
+      <option name="PACKAGE_NAME" value="testInjester" />
+      <option name="MAIN_CLASS_NAME" value="testInjester.WatchDirServiceTest" />
       <option name="METHOD_NAME" value="checkAddingNewFile" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="API" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <module name="sahabino" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="ir.saleh.rest.API" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ir.saleh.rest.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.LogCreatorTest.createLogTest" />
+        <item itemvalue="JUnit.LogCreatorTest.processLogFile" />
         <item itemvalue="JUnit.WatchDirServiceTest.checkAddingNewFile" />
         <item itemvalue="JUnit.WatchDirServiceTest" />
         <item itemvalue="Application.FileInjestorMain" />
-        <item itemvalue="Spring Boot.API" />
-        <item itemvalue="Application.RuleEvaluatorMain" />
       </list>
     </recent_temporary>
   </component>
@@ -181,14 +182,7 @@
       <workItem from="1686242934586" duration="21062000" />
       <workItem from="1686332003693" duration="11902000" />
       <workItem from="1686399441861" duration="15966000" />
-      <workItem from="1686458159636" duration="12676000" />
-    </task>
-    <task id="LOCAL-00008" summary="add getter to Log class">
-      <created>1686231526327</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1686231526327</updated>
+      <workItem from="1686458159636" duration="14123000" />
     </task>
     <task id="LOCAL-00009" summary="modify usage of Log class">
       <created>1686231631777</created>
@@ -526,7 +520,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686466375720</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="test WatchDirService Operation">
+      <created>1686470861954</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1686470861954</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -544,8 +545,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactor camelcase name" />
-    <MESSAGE value="refactor constructor" />
     <MESSAGE value="add WatchDirService" />
     <MESSAGE value="add LogCreatorService" />
     <MESSAGE value="add SendKafkaService" />
@@ -569,7 +568,9 @@
     <MESSAGE value="ReceiveKafkaService: javadoc" />
     <MESSAGE value="AlertCreatorService: javadoc" />
     <MESSAGE value="DatabaseService: javadoc" />
-    <option name="LAST_COMMIT_MESSAGE" value="DatabaseService: javadoc" />
+    <MESSAGE value="test WatchDirService" />
+    <MESSAGE value="test WatchDirService Operation" />
+    <option name="LAST_COMMIT_MESSAGE" value="test WatchDirService Operation" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
