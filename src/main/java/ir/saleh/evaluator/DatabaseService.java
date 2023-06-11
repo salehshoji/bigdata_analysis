@@ -6,7 +6,7 @@ import ir.saleh.log.Log;
 import java.sql.SQLException;
 import java.util.concurrent.BlockingQueue;
 
-public class DatabaseService implements Runnable{
+public class DatabaseService extends Thread{
 
     private final BlockingQueue<Alert> passAlertQueue;
 

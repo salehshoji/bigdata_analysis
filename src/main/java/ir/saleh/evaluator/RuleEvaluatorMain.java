@@ -28,24 +28,19 @@ public class RuleEvaluatorMain {
 
         final String topic = ruleEvaluatorconf.getTopic();
 
-        // Load consumer configuration settings from a local file
         final Properties props = FileInjestorMain.loadConfig(ruleEvaluatorconf.getKafkaPropertiesPath());
         props.put(ConsumerConfig.GROUP_ID_CONFIG, ruleEvaluatorconf.getKafkaGroupIdConfig());
         props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, ruleEvaluatorconf.getKafkaAutoOffsetResetConfig());
         final Consumer<String, Log> consumer = new KafkaConsumer<>(props);
         consumer.subscribe(List.of(topic));
 
-        Map<String, List<Log>> componentMap = new HashMap<>();
         BlockingQueue<Alert> passAlertQueue = new ArrayBlockingQueue<>(10_000);
         BlockingQueue<Log> passLogQueue = new ArrayBlockingQueue<>(10_000);
 
-        ReceiveKafkaService receiveKafkaService = new ReceiveKafkaService(passLogQueue, props, topic);
-        Thread receiveKafkaServiceThread = new Thread(receiveKafkaService);
-        AlertCreatorService alertCreatorService = new AlertCreatorService(ruleEvaluatorconf.getDuration(), ruleEvaluatorconf.getCountLimit(),
+        ReceiveKafkaService receiveKafkaServiceThread = new ReceiveKafkaService(passLogQueue, props, topic);
+        AlertCreatorService alertCreatorServiceThread = new AlertCreatorService(ruleEvaluatorconf.getDuration(), ruleEvaluatorconf.getCountLimit(),
                 ruleEvaluatorconf.getRateLimit(), ruleEvaluatorconf.getErrorList(), passLogQueue, passAlertQueue);
-        Thread alertCreatorServiceThread = new Thread(alertCreatorService);
-        DatabaseService databaseService = new DatabaseService(passAlertQueue);
-        Thread databaseServiceThread = new Thread(databaseService);
+        DatabaseService databaseServiceThread = new DatabaseService(passAlertQueue);
         receiveKafkaServiceThread.start();
         alertCreatorServiceThread.start();
         databaseServiceThread.start();

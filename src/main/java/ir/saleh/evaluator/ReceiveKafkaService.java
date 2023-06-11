@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.BlockingQueue;
 
-public class ReceiveKafkaService implements Runnable{
+public class ReceiveKafkaService extends Thread{
     private final BlockingQueue<Log> passLogQueue;
     private final Properties props;
     private final String topic;

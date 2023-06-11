@@ -1,12 +1,16 @@
 package ir.saleh.injester;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.Arrays;
 import java.util.concurrent.BlockingQueue;
 
-public class WatchDirService implements Runnable{
+public class WatchDirService extends Thread{
+    private static final Logger logger = LoggerFactory.getLogger(WatchDirService.class);
 
     private final BlockingQueue<Path> passPathQueue;
     private final String logPath;
@@ -42,7 +46,7 @@ public class WatchDirService implements Runnable{
 
         WatchKey key;
         try {
-            while (true) {
+            while (!isInterrupted()) {
                 key = watchService.take();
                 for (WatchEvent<?> event : key.pollEvents()) {
                     WatchEvent<Path> pathWatchEvent = (WatchEvent<Path>) event;
@@ -52,7 +56,8 @@ public class WatchDirService implements Runnable{
                 key.reset();
             }
         } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+            this.interrupt();
+            logger.info("WatchDirService interrupted");
         }
     }
 }

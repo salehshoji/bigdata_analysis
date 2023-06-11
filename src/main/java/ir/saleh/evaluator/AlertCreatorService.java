@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.BlockingQueue;
 
-public class AlertCreatorService implements Runnable {
+public class AlertCreatorService extends Thread {
 
     private final float duration; // second
     private final float countLimit; // number in TIME_LIMIT

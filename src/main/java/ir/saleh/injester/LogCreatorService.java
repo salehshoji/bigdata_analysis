@@ -1,6 +1,8 @@
 package ir.saleh.injester;
 
 import ir.saleh.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,8 +11,9 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 
-public class LogCreatorService implements Runnable {
+public class LogCreatorService extends Thread{
 
+    private static final Logger logger = LoggerFactory.getLogger(WatchDirService.class);
     private final BlockingQueue<Path> passPathQueue;
     private final BlockingQueue<Log> passLogsQueue;
     private String logDestPath;
@@ -28,7 +31,7 @@ public class LogCreatorService implements Runnable {
         if (!dest.exists()) {
             dest.mkdir();
         }
-        while (true) {
+        while (!isInterrupted() || !passPathQueue.isEmpty()) {
             Path logFile;
             try {
                 logFile = passPathQueue.take();
@@ -39,7 +42,10 @@ public class LogCreatorService implements Runnable {
                     passLogsQueue.put(log);
                 }
                 logFile.toFile().renameTo(new File(logDestPath + logFile.getFileName()));
-            } catch (IOException | InterruptedException e) {
+            } catch (InterruptedException e) {
+                interrupt();
+                logger.info("LogCreator interrupted");
+            }catch (IOException e){
                 throw new RuntimeException(e);
             }
         }

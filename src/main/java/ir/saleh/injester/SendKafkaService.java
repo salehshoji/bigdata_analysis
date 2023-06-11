@@ -4,11 +4,15 @@ import ir.saleh.log.Log;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Properties;
 import java.util.concurrent.BlockingQueue;
 
-public class SendKafkaService implements Runnable{
+public class SendKafkaService extends Thread{
+
+    private static final Logger logger = LoggerFactory.getLogger(WatchDirService.class);
     private final BlockingQueue<Log> passLogsQueue;
     private final String topic;
     private final Properties props;
@@ -22,16 +26,18 @@ public class SendKafkaService implements Runnable{
     @Override
     public void run() {
         Producer<String, Log> producer = new KafkaProducer<>(props);
-        while (true){
+        while (!isInterrupted() || !passLogsQueue.isEmpty()){
             Log log = null;
             try {
                 log = passLogsQueue.take();
+                ProducerRecord<String, Log> producerRecord = new ProducerRecord<>
+                        (topic, log.getComponent(), log);
+                producer.send(producerRecord);
             } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+                interrupt();
+                logger.info("SendKafka interrupted");
             }
-            ProducerRecord<String, Log> producerRecord = new ProducerRecord<>
-                    (topic, log.getComponent(), log);
-            producer.send(producerRecord);
+
         }
 
     }
