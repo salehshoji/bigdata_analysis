@@ -21,11 +21,9 @@ public class AlertCreatorTests {
     void createAlertTest() {
         BlockingQueue<Log> passLogQueue = new ArrayBlockingQueue<>(10_000);
         BlockingQueue<Alert> passAlertQueue = new ArrayBlockingQueue<>(10_000);
-        Log log = new Log("componentTest",
-                "2023-06-07 10:12:16", "thread3", "WARNING", "package.name", ".ClassName", "msg");
         AlertCreatorService alertCreatorService = new AlertCreatorService
                 (1, 1, 1, List.of("ERROR", "WARNING"), passLogQueue, passAlertQueue);
-        Alert alert = new Alert(log.getComponent(), "first_rule",
+        Alert alert = new Alert("componentTest", "first_rule",
                 "rule1 componentTestWARNING     msg on 2023-06-07T10:12:16");
         Assertions.assertEquals("componentTest", alert.getComponentName());
         Assertions.assertEquals("first_rule", alert.getAlertName());

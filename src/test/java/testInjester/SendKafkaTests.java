@@ -36,7 +36,8 @@ public class SendKafkaTests {
     }
 
     /**
-     * check interrupt should process data before shutdown
+     * check interrupt
+     * should process data before shutdown
      *
      * @throws InterruptedException
      * @throws IOException
