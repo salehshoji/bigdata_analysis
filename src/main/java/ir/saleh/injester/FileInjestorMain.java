@@ -14,7 +14,14 @@ import java.util.Properties;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
+/**
+ * this is FileInjestor Main class
+ * load configs (yaml, Properties)
+ * runs 3 threads watchDirServiceThread, logCreatorServiceThread, sendKafkaServiceThread
+ * handles interrupt using shutdownHook
+ */
 public class FileInjestorMain {
+
     public static void main(String[] args) {
         final Yaml yaml = new Yaml(new Constructor(FileInjesterConf.class));
         InputStream inputStream = FileInjestorMain.class.getClassLoader()
@@ -45,7 +52,12 @@ public class FileInjestorMain {
         }));
     }
 
-
+    /**
+     * load kafka config
+     * @param configFile
+     * @return
+     * @throws IOException
+     */
     public static Properties loadConfig(final String configFile) throws IOException {
         if (!Files.exists(Paths.get(configFile))) {
             throw new IOException(configFile + " not found.");
