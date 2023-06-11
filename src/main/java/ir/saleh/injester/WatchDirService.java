@@ -9,6 +9,10 @@ import java.nio.file.*;
 import java.util.Arrays;
 import java.util.concurrent.BlockingQueue;
 
+/**
+ * WatchDirService watch logs directory
+ * put log files path to passPathQueue
+ */
 public class WatchDirService extends Thread{
     private static final Logger logger = LoggerFactory.getLogger(WatchDirService.class);
 
@@ -34,7 +38,6 @@ public class WatchDirService extends Thread{
         }
 
         File[] logs = dir.listFiles();
-//        System.out.println(Arrays.stream(logs).toList());
         assert logs != null;
         for (File log : logs) {
             try {
