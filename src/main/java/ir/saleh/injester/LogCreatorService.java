@@ -37,8 +37,7 @@ public class LogCreatorService extends Thread{
                 logFile = passPathQueue.take();
                 List<String> lines = Files.readString(logFile).lines().toList();
                 for (String line : lines) {
-                    Log log = createLog(logFile.toString().substring(logFile.toString().lastIndexOf("/") + 1,
-                            logFile.toString().lastIndexOf("-")), line);
+                    Log log = createLog(logFile.getFileName().toString().split("-")[0], line);
                     passLogsQueue.put(log);
                 }
                 logFile.toFile().renameTo(new File(logDestPath + logFile.getFileName()));

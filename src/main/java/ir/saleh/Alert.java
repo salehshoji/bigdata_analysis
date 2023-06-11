@@ -5,14 +5,21 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import imported.*;
 import jakarta.persistence.*;
 
 
 @Entity
 @Table(name = "Alerts")
 public class Alert {
+
+    @Id
+    private int id;
+    private String componentName;
+    private String alertName;
+    private String description;
+
     public static List<Alert> alertsList = new ArrayList<>();
+    private static int countAlert = 0;
 
     public String getComponentName() {
         return componentName;
@@ -38,12 +45,17 @@ public class Alert {
         this.description = description;
     }
 
-    @Id
-    String componentName;
-    String alertName;
-    String description;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Alert(String componentName, String alertName, String description) {
+        this.id = countAlert;
+        countAlert += 1;
         this.componentName = componentName;
         this.alertName = alertName;
         this.description = description;
@@ -58,7 +70,7 @@ public class Alert {
         Connection conn = DriverManager.getConnection(connectionUrl);
         checkTable(conn, "alerts");
         Statement stmt = conn.createStatement();
-        String sql = "INSERT INTO alerts VALUES (" + "\"" + this.componentName + "\"" + ", " + "\"" + this.alertName +
+        String sql = "INSERT INTO alerts (id, component_name, alert_name, description) VALUES (" + this.id + ",\"" + this.componentName + "\"" + ", " + "\"" + this.alertName +
                 "\"" + ", " + "\"" + this.description + "\"" + ")";
         stmt.executeUpdate(sql);
     }
@@ -67,6 +79,7 @@ public class Alert {
         if (!tableExists(conn, "alerts")) {
             String sql = "CREATE TABLE alerts " +
                     "(" +
+                    "id int PRIMARY KEY," +
                     " component_name VARCHAR(255) not NULL, " +
                     " alert_name VARCHAR(255), " +
                     " description VARCHAR(255))";

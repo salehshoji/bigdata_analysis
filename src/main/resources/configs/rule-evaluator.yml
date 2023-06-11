@@ -1,6 +1,6 @@
 duration: 5
-countLimit: 5
-rateLimit: 1
+countLimit: 1
+rateLimit: 0
 errorList:
     - "ERROR"
     - "WARNING"
