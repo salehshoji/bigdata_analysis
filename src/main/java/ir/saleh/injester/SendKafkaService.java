@@ -10,6 +10,10 @@ import org.slf4j.LoggerFactory;
 import java.util.Properties;
 import java.util.concurrent.BlockingQueue;
 
+/**
+ * SendKafkaService get logs from Queue
+ * put logs to kafka topic
+ */
 public class SendKafkaService extends Thread{
 
     private static final Logger logger = LoggerFactory.getLogger(SendKafkaService.class);
