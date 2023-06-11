@@ -17,6 +17,7 @@ import java.util.concurrent.BlockingQueue;
 public class SendKafkaService extends Thread{
 
     private static final Logger logger = LoggerFactory.getLogger(SendKafkaService.class);
+    private boolean shouldContinue;
     private final BlockingQueue<Log> passLogsQueue;
     private final String topic;
     private final Properties props;
@@ -25,12 +26,13 @@ public class SendKafkaService extends Thread{
         this.passLogsQueue = passLogsQueue;
         this.topic = topic;
         this.props = props;
+        this.shouldContinue = true;
     }
 
     @Override
     public void run() {
         Producer<String, Log> producer = new KafkaProducer<>(props);
-        while (!isInterrupted() || !passLogsQueue.isEmpty()){
+        while (shouldContinue || !passLogsQueue.isEmpty()){
             Log log = null;
             try {
                 logger.info("read log from queue");
@@ -40,7 +42,7 @@ public class SendKafkaService extends Thread{
                 producer.send(producerRecord);
                 logger.info("log sent to kafka");
             } catch (InterruptedException e) {
-                interrupt();
+                shouldContinue = false;
                 logger.info("SendKafka interrupted");
             }
 

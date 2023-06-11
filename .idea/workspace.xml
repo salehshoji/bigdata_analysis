@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d58872b-a43d-4411-8b9b-e4dad1e39cf0" name="Changes" comment="test WatchDirService Operation">
-      <change afterPath="$PROJECT_DIR$/src/test/java/testInjester/LogCreatorTest.java" afterDir="false" />
+    <list default="true" id="2d58872b-a43d-4411-8b9b-e4dad1e39cf0" name="Changes" comment="test LogCreatorService">
+      <change afterPath="$PROJECT_DIR$/src/test/java/testInjester/SendKafkaTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/saleh/injester/LogCreatorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/saleh/injester/LogCreatorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/WatchDirServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/testInjester/WatchDirServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/log/comp1-2023_06_07-10_12_16.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/saleh/injester/SendKafkaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/saleh/injester/SendKafkaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/testInjester/LogCreatorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/testInjester/LogCreatorTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/testInjester/WatchDirServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/testInjester/WatchDirServiceTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,21 +88,8 @@
       <recent name="org.example" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.LogCreatorTest.createLogTest">
-    <configuration name="FileInjestorMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ir.saleh.injester.FileInjestorMain" />
-      <module name="sahabino" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ir.saleh.injester.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LogCreatorTest.createLogTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.SendKafkaTests.checkInterrupt">
+    <configuration name="LogCreatorTests.createLogTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="sahabino" />
       <extension name="coverage">
         <pattern>
@@ -111,14 +98,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="testInjester" />
-      <option name="MAIN_CLASS_NAME" value="testInjester.LogCreatorTest" />
+      <option name="MAIN_CLASS_NAME" value="testInjester.LogCreatorTests" />
       <option name="METHOD_NAME" value="createLogTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LogCreatorTest.processLogFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LogCreatorTests.processLogFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="sahabino" />
       <extension name="coverage">
         <pattern>
@@ -127,27 +114,55 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="testInjester" />
-      <option name="MAIN_CLASS_NAME" value="testInjester.LogCreatorTest" />
+      <option name="MAIN_CLASS_NAME" value="testInjester.LogCreatorTests" />
       <option name="METHOD_NAME" value="processLogFile" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="WatchDirServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SendKafkaTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="sahabino" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="testInjester.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <option name="PACKAGE_NAME" value="testInjester" />
-      <option name="MAIN_CLASS_NAME" value="testInjester.WatchDirServiceTest" />
+      <option name="MAIN_CLASS_NAME" value="testInjester.SendKafkaTests" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="WatchDirServiceTest.checkAddingNewFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SendKafkaTests.checkInterrupt" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="sahabino" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="testInjester.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <option name="PACKAGE_NAME" value="testInjester" />
-      <option name="MAIN_CLASS_NAME" value="testInjester.WatchDirServiceTest" />
-      <option name="METHOD_NAME" value="checkAddingNewFile" />
+      <option name="MAIN_CLASS_NAME" value="testInjester.SendKafkaTests" />
+      <option name="METHOD_NAME" value="checkInterrupt" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SendKafkaTests.readLogsQueue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="sahabino" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="testInjester.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="testInjester" />
+      <option name="MAIN_CLASS_NAME" value="testInjester.SendKafkaTests" />
+      <option name="METHOD_NAME" value="readLogsQueue" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -155,11 +170,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.LogCreatorTest.createLogTest" />
-        <item itemvalue="JUnit.LogCreatorTest.processLogFile" />
-        <item itemvalue="JUnit.WatchDirServiceTest.checkAddingNewFile" />
-        <item itemvalue="JUnit.WatchDirServiceTest" />
-        <item itemvalue="Application.FileInjestorMain" />
+        <item itemvalue="JUnit.SendKafkaTests.checkInterrupt" />
+        <item itemvalue="JUnit.SendKafkaTests" />
+        <item itemvalue="JUnit.SendKafkaTests.readLogsQueue" />
+        <item itemvalue="JUnit.LogCreatorTests.createLogTest" />
+        <item itemvalue="JUnit.LogCreatorTests.processLogFile" />
       </list>
     </recent_temporary>
   </component>
@@ -182,14 +197,7 @@
       <workItem from="1686242934586" duration="21062000" />
       <workItem from="1686332003693" duration="11902000" />
       <workItem from="1686399441861" duration="15966000" />
-      <workItem from="1686458159636" duration="14123000" />
-    </task>
-    <task id="LOCAL-00009" summary="modify usage of Log class">
-      <created>1686231631777</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1686231631777</updated>
+      <workItem from="1686458159636" duration="16455000" />
     </task>
     <task id="LOCAL-00010" summary="debug logCreator method : getting substrings&#10;add datetime formatter to Log.java">
       <created>1686232853360</created>
@@ -527,7 +535,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686470861954</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="test LogCreatorService">
+      <created>1686472303184</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1686472303184</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -545,7 +560,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add WatchDirService" />
     <MESSAGE value="add LogCreatorService" />
     <MESSAGE value="add SendKafkaService" />
     <MESSAGE value="add service manager (FileInjestorMain)" />
@@ -570,9 +584,19 @@
     <MESSAGE value="DatabaseService: javadoc" />
     <MESSAGE value="test WatchDirService" />
     <MESSAGE value="test WatchDirService Operation" />
-    <option name="LAST_COMMIT_MESSAGE" value="test WatchDirService Operation" />
+    <MESSAGE value="test LogCreatorService" />
+    <option name="LAST_COMMIT_MESSAGE" value="test LogCreatorService" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/testInjester/SendKafkaTests.java</url>
+          <line>55</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <inline-watch fileUrl="file://$PROJECT_DIR$/src/main/java/ir/saleh/injester/FileInjestorMain.java" line="43">
         <watch expression="watchDirServiceThread" language="JAVA" />

@@ -1,7 +1,6 @@
 package testInjester;
 
 import ir.saleh.injester.LogCreatorService;
-import ir.saleh.injester.WatchDirService;
 import ir.saleh.log.Log;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -11,12 +10,12 @@ import java.nio.file.Path;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
-public class LogCreatorTest {
+public class LogCreatorTests {
     /**
      * check assigning log attributes
      */
     @Test
-    void createLogTest(){
+    void createLogTest() {
         BlockingQueue<Path> passPathQueue = new ArrayBlockingQueue<>(10_000);
         BlockingQueue<Log> passLogQueue = new ArrayBlockingQueue<>(10_000);
         LogCreatorService logCreatorService = new LogCreatorService(passPathQueue, passLogQueue,
@@ -34,6 +33,7 @@ public class LogCreatorTest {
 
     /**
      * check queueing logs from log file in passPathQueue
+     *
      * @throws InterruptedException
      */
     @Test

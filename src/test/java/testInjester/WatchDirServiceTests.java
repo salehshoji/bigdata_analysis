@@ -11,9 +11,10 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 
-public class WatchDirServiceTest {
+public class WatchDirServiceTests {
     /**
      * checks adding existing files to Queue
+     *
      * @throws InterruptedException
      */
     @Test
@@ -28,8 +29,8 @@ public class WatchDirServiceTest {
     }
 
     /**
-     *
      * checks adding new files to Queue
+     *
      * @throws InterruptedException
      */
     @Test
