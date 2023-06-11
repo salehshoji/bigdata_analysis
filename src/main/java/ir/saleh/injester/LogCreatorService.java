@@ -11,6 +11,12 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 
+/**
+ * LogCreatorService get paths from Queue
+ * read files
+ * Create Log Objects
+ * put logs to Queue
+ */
 public class LogCreatorService extends Thread{
 
     private static final Logger logger = LoggerFactory.getLogger(LogCreatorService.class);
@@ -53,6 +59,12 @@ public class LogCreatorService extends Thread{
 
     }
 
+    /**
+     * create Log Object
+     * @param component
+     * @param logStr
+     * @return Log
+     */
     private Log createLog(String component, String logStr) {
         String[] logArray = logStr.split(" ");
         String datetime = logArray[0] + " " + logArray[1].substring(0, logArray[1].indexOf(','));
