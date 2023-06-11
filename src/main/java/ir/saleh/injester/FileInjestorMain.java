@@ -15,7 +15,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 /**
- * this is FileInjestor Main class
+ * FileInjestor main class
  * load configs (yaml, Properties)
  * runs 3 threads watchDirServiceThread, logCreatorServiceThread, sendKafkaServiceThread
  * handles interrupt using shutdownHook
@@ -58,7 +58,7 @@ public class FileInjestorMain {
      * @return
      * @throws IOException
      */
-    public static Properties loadConfig(final String configFile) throws IOException {
+    private static Properties loadConfig(final String configFile) throws IOException {
         if (!Files.exists(Paths.get(configFile))) {
             throw new IOException(configFile + " not found.");
         }
