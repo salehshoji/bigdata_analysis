@@ -19,6 +19,7 @@ import java.util.concurrent.BlockingQueue;
  */
 public class LogCreatorService extends Thread{
 
+    private boolean shouldContinue;
     private static final Logger logger = LoggerFactory.getLogger(LogCreatorService.class);
     private final BlockingQueue<Path> passPathQueue;
     private final BlockingQueue<Log> passLogsQueue;
@@ -28,6 +29,7 @@ public class LogCreatorService extends Thread{
         this.passPathQueue = passPathsQueue;
         this.passLogsQueue = passLogsQueue;
         this.logDestPath = logDestPath;
+        this.shouldContinue = true;
     }
 
 
@@ -37,7 +39,7 @@ public class LogCreatorService extends Thread{
         if (!dest.exists()) {
             dest.mkdir();
         }
-        while (!isInterrupted() || !passPathQueue.isEmpty()) {
+        while (shouldContinue || !passPathQueue.isEmpty()) {
             Path logFile;
             try {
                 logger.info("read file from queue");
@@ -50,7 +52,7 @@ public class LogCreatorService extends Thread{
                 }
                 logFile.toFile().renameTo(new File(logDestPath + logFile.getFileName()));
             } catch (InterruptedException e) {
-                interrupt();
+                shouldContinue = false;
                 logger.info("LogCreator interrupted");
             }catch (IOException e){
                 throw new RuntimeException(e);

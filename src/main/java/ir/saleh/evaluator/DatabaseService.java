@@ -12,6 +12,7 @@ import java.util.concurrent.BlockingQueue;
  * saves alerts to database
  */
 public class DatabaseService extends Thread{
+    private boolean shouldContinue;
 
     private static final Logger logger = LoggerFactory.getLogger(AlertCreatorService.class);
 
@@ -19,11 +20,12 @@ public class DatabaseService extends Thread{
 
     public DatabaseService(BlockingQueue<Alert> passAlertQueue) {
         this.passAlertQueue = passAlertQueue;
+        this.shouldContinue = true;
     }
 
     @Override
     public void run() {
-        while (!isInterrupted() || !passAlertQueue.isEmpty()) {
+        while (shouldContinue || !passAlertQueue.isEmpty()) {
             try {
                 logger.info("read alert from queue");
                 passAlertQueue.take().pushToDatabase();
@@ -31,7 +33,7 @@ public class DatabaseService extends Thread{
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             } catch (InterruptedException e) {
-                interrupt();
+                shouldContinue = false;
                 logger.info("AlertCreatorService interrupted");
             }
         }

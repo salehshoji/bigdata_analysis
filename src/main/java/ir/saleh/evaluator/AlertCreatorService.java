@@ -19,7 +19,7 @@ import java.util.concurrent.BlockingQueue;
  * puts alerts to queue
  */
 public class AlertCreatorService extends Thread {
-
+    private boolean shouldContinue;
     private static final Logger logger = LoggerFactory.getLogger(AlertCreatorService.class);
     private final float duration; // second
     private final float countLimit; // number in TIME_LIMIT
@@ -41,11 +41,12 @@ public class AlertCreatorService extends Thread {
         this.passLogQueue = passLogQueue;
         this.passAlertQueue = passAlertQueue;
         this.componentMap = new HashMap<>();
+        this.shouldContinue = true;
     }
 
     @Override
     public void run() {
-        while (!isInterrupted() || !passLogQueue.isEmpty()) {
+        while (shouldContinue || !passLogQueue.isEmpty()) {
             try {
                 logger.info("read log from queue");
                 Log log = passLogQueue.take();
@@ -63,7 +64,7 @@ public class AlertCreatorService extends Thread {
                 checkRate(logList, log.getComponent());
 
             } catch (InterruptedException e) {
-                interrupt();
+                shouldContinue = false;
                 logger.info("AlertCreatorService interrupted");
             }
         }

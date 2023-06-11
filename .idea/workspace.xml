@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d58872b-a43d-4411-8b9b-e4dad1e39cf0" name="Changes" comment="test LogCreatorService">
-      <change afterPath="$PROJECT_DIR$/src/test/java/testInjester/SendKafkaTests.java" afterDir="false" />
+    <list default="true" id="2d58872b-a43d-4411-8b9b-e4dad1e39cf0" name="Changes" comment="test SendKafkaService">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/saleh/injester/SendKafkaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/saleh/injester/SendKafkaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/testInjester/LogCreatorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/testInjester/LogCreatorTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/testInjester/WatchDirServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/testInjester/WatchDirServiceTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/saleh/evaluator/AlertCreatorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/saleh/evaluator/AlertCreatorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/saleh/evaluator/DatabaseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/saleh/evaluator/DatabaseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/saleh/injester/LogCreatorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/saleh/injester/LogCreatorService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,14 +196,7 @@
       <workItem from="1686242934586" duration="21062000" />
       <workItem from="1686332003693" duration="11902000" />
       <workItem from="1686399441861" duration="15966000" />
-      <workItem from="1686458159636" duration="16455000" />
-    </task>
-    <task id="LOCAL-00010" summary="debug logCreator method : getting substrings&#10;add datetime formatter to Log.java">
-      <created>1686232853360</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1686232853360</updated>
+      <workItem from="1686458159636" duration="16765000" />
     </task>
     <task id="LOCAL-00011" summary="support multiline logs">
       <created>1686233579049</created>
@@ -542,7 +534,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686472303184</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="test SendKafkaService">
+      <created>1686474629296</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1686474629296</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -560,7 +559,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add LogCreatorService" />
     <MESSAGE value="add SendKafkaService" />
     <MESSAGE value="add service manager (FileInjestorMain)" />
     <MESSAGE value="create base RuleEvaluator services" />
@@ -585,7 +583,8 @@
     <MESSAGE value="test WatchDirService" />
     <MESSAGE value="test WatchDirService Operation" />
     <MESSAGE value="test LogCreatorService" />
-    <option name="LAST_COMMIT_MESSAGE" value="test LogCreatorService" />
+    <MESSAGE value="test SendKafkaService" />
+    <option name="LAST_COMMIT_MESSAGE" value="test SendKafkaService" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
