@@ -29,10 +29,12 @@ public class SendKafkaService extends Thread{
         while (!isInterrupted() || !passLogsQueue.isEmpty()){
             Log log = null;
             try {
+                logger.info("read log from queue");
                 log = passLogsQueue.take();
                 ProducerRecord<String, Log> producerRecord = new ProducerRecord<>
                         (topic, log.getComponent(), log);
                 producer.send(producerRecord);
+                logger.info("log sent to kafka");
             } catch (InterruptedException e) {
                 interrupt();
                 logger.info("SendKafka interrupted");

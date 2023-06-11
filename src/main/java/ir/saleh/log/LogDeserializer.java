@@ -23,7 +23,6 @@ public class LogDeserializer implements Deserializer<Log> {
         if (data == null) {
             return null;
         }
-        System.out.println("Deserializing...");
         objectMapper.registerModule(new JavaTimeModule());
         objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
         try {

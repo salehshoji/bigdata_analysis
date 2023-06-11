@@ -22,7 +22,9 @@ public class DatabaseService extends Thread{
     public void run() {
         while (!isInterrupted() || !passAlertQueue.isEmpty()) {
             try {
+                logger.info("read alert from queue");
                 passAlertQueue.take().pushToDatabase();
+                logger.info("put alert to database");
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             } catch (InterruptedException e) {

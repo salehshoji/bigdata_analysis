@@ -43,8 +43,10 @@ public class AlertCreatorService extends Thread {
     public void run() {
         while (!isInterrupted() || !passLogQueue.isEmpty()) {
             try {
+                logger.info("read log from queue");
                 Log log = passLogQueue.take();
                 if (!componentMap.containsKey(log.getComponent())) {
+                    logger.info("put alert to queue");
                     componentMap.put(log.getComponent(), new ArrayList<>());
                 }
                 List<Log> logList = componentMap.get(log.getComponent());

@@ -34,10 +34,12 @@ public class LogCreatorService extends Thread{
         while (!isInterrupted() || !passPathQueue.isEmpty()) {
             Path logFile;
             try {
+                logger.info("read file from queue");
                 logFile = passPathQueue.take();
                 List<String> lines = Files.readString(logFile).lines().toList();
                 for (String line : lines) {
                     Log log = createLog(logFile.getFileName().toString().split("-")[0], line);
+                    logger.info("put log to queue");
                     passLogsQueue.put(log);
                 }
                 logFile.toFile().renameTo(new File(logDestPath + logFile.getFileName()));

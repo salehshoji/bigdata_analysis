@@ -40,10 +40,12 @@ public class WatchDirService extends Thread{
             try {
                 passPathQueue.put(log.toPath());
             } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+                this.interrupt();
+                logger.info("WatchDirService interrupted");
             }
         }
 
+        logger.info("WatchDirService starting...");
         WatchKey key;
         try {
             while (!isInterrupted()) {
@@ -51,6 +53,7 @@ public class WatchDirService extends Thread{
                 for (WatchEvent<?> event : key.pollEvents()) {
                     WatchEvent<Path> pathWatchEvent = (WatchEvent<Path>) event;
                     File log = new File(dir + "/" + pathWatchEvent.context());
+                    logger.info("put file to queue");
                     passPathQueue.put(log.toPath());
                 }
                 key.reset();

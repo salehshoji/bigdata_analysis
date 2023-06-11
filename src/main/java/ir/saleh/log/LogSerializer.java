@@ -21,7 +21,6 @@ public class LogSerializer implements Serializer<Log> {
         if (data == null) {
             return null;
         }
-        System.out.println("Serializing...");
         objectMapper.registerModule(new JavaTimeModule());
         objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
 

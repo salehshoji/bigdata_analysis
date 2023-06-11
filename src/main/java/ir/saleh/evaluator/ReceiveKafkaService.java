@@ -33,9 +33,11 @@ public class ReceiveKafkaService extends Thread{
         while (!isInterrupted()) {
             ConsumerRecords<String, Log> records = consumer.poll(Duration.ofMillis(100));
             for (ConsumerRecord<String, Log> record : records) {
+                logger.info("read log from kafka");
                 Log log = record.value();
-                System.out.println(log);
+                logger.info(log.toString());
                 try {
+                    logger.info("put log to queue");
                     passLogQueue.put(log);
                 } catch (InterruptedException e) {
                     interrupt();
