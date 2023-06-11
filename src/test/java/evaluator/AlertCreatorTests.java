@@ -1,6 +1,7 @@
 package evaluator;
 
 import ir.saleh.evaluator.AlertCreatorService;
+import ir.saleh.evaluator.DatabaseService;
 import ir.saleh.injester.LogCreatorService;
 import ir.saleh.log.Log;
 import ir.saleh.rest.Alert;
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -103,6 +105,38 @@ public class AlertCreatorTests {
                 (10, 4, 2, List.of("ERROR", "WARNING"), passLogQueue, passAlertQueue);
         alertCreatorService.checkCountLimit(List.of(log, log1, log2, log3, log4, log5));
         Assertions.assertEquals(1, passAlertQueue.size());
+    }
+
+    @Test
+    void checkInterrupt() throws InterruptedException, IOException {
+        BlockingQueue<Log> passLogQueue = new ArrayBlockingQueue<>(10_000);
+        BlockingQueue<Alert> passAlertQueue = new ArrayBlockingQueue<>(10_000);
+        Log log = new Log("componentTest",
+                "2023-06-07 10:12:16", "thread3", "WARNING", "package.name", ".ClassName", "msg");
+        Log log1 = new Log("componentTest",
+                "2023-06-07 10:13:16", "thread3", "INFO", "package.name", ".ClassName", "msg");
+        Log log2 = new Log("componentTest",
+                "2023-06-07 10:14:16", "thread3", "INFO", "package.name", ".ClassName", "msg");
+        Log log3 = new Log("componentTest",
+                "2023-06-07 10:15:16", "thread3", "INFO", "package.name", ".ClassName", "msg");
+        Log log4 = new Log("componentTest",
+                "2023-06-07 10:16:16", "thread3", "INFO", "package.name", ".ClassName", "msg");
+        Log log5 = new Log("componentTest",
+                "2023-06-07 10:17:16", "thread3", "INFO", "package.name", ".ClassName", "msg");
+        AlertCreatorService alertCreatorService = new AlertCreatorService
+                (10, 4, 2, List.of("ERROR", "WARNING"), passLogQueue, passAlertQueue);
+        passLogQueue.put(log);
+        passLogQueue.put(log1);
+        passLogQueue.put(log2);
+        passLogQueue.put(log3);
+        passLogQueue.put(log4);
+        passLogQueue.put(log5);
+        alertCreatorService.start();
+        alertCreatorService.interrupt();
+        Thread.sleep(5_000);
+        Assertions.assertTrue(passLogQueue.isEmpty());
+        Assertions.assertEquals(2, passAlertQueue.size());
+
     }
 
 }

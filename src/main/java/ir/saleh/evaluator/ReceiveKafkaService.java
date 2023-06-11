@@ -39,7 +39,7 @@ public class ReceiveKafkaService extends Thread{
             for (ConsumerRecord<String, Log> record : records) {
                 logger.info("read log from kafka");
                 Log log = record.value();
-                logger.info(log.toString());
+                logger.debug(log.toString());
                 try {
                     logger.info("put log to queue");
                     passLogQueue.put(log);

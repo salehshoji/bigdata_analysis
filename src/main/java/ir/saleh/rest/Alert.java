@@ -70,7 +70,8 @@ public class Alert {
         Connection conn = DriverManager.getConnection(connectionUrl);
         checkTable(conn, "alerts");
         Statement stmt = conn.createStatement();
-        String sql = "INSERT INTO alerts (id, component_name, alert_name, description) VALUES (" + this.id + ",\"" + this.componentName + "\"" + ", " + "\"" + this.alertName +
+        String sql = "INSERT INTO alerts (id, component_name, alert_name, description) VALUES (" +
+                this.id + ",\"" + this.componentName + "\"" + ", " + "\"" + this.alertName +
                 "\"" + ", " + "\"" + this.description + "\"" + ")";
         stmt.executeUpdate(sql);
     }
