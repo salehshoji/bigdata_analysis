@@ -13,7 +13,7 @@ import java.util.concurrent.BlockingQueue;
  * WatchDirService watch logs directory
  * put log files path to passPathQueue
  */
-public class WatchDirService extends Thread{
+public class WatchDirService extends Thread {
     private static final Logger logger = LoggerFactory.getLogger(WatchDirService.class);
 
     private final BlockingQueue<Path> passPathQueue;

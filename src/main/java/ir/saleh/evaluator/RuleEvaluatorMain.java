@@ -63,6 +63,7 @@ public class RuleEvaluatorMain {
 
     /**
      * load kafka config
+     *
      * @param configFile
      * @return
      * @throws IOException

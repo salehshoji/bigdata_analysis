@@ -15,7 +15,7 @@ import java.util.concurrent.BlockingQueue;
  * ReceiveKafkaService receives logs from kafka
  * puts logs to queue
  */
-public class ReceiveKafkaService extends Thread{
+public class ReceiveKafkaService extends Thread {
 
     private static final Logger logger = LoggerFactory.getLogger(ReceiveKafkaService.class);
     private final BlockingQueue<Log> passLogQueue;

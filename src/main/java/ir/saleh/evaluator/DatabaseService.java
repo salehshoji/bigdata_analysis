@@ -11,7 +11,7 @@ import java.util.concurrent.BlockingQueue;
  * reads alerts from queue
  * saves alerts to database
  */
-public class DatabaseService extends Thread{
+public class DatabaseService extends Thread {
     private boolean shouldContinue;
 
     private static final Logger logger = LoggerFactory.getLogger(AlertCreatorService.class);

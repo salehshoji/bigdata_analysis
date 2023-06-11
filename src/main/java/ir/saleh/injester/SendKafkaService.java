@@ -14,7 +14,7 @@ import java.util.concurrent.BlockingQueue;
  * SendKafkaService get logs from Queue
  * put logs to kafka topic
  */
-public class SendKafkaService extends Thread{
+public class SendKafkaService extends Thread {
 
     private static final Logger logger = LoggerFactory.getLogger(SendKafkaService.class);
     private boolean shouldContinue;
@@ -32,7 +32,7 @@ public class SendKafkaService extends Thread{
     @Override
     public void run() {
         Producer<String, Log> producer = new KafkaProducer<>(props);
-        while (shouldContinue || !passLogsQueue.isEmpty()){
+        while (shouldContinue || !passLogsQueue.isEmpty()) {
             Log log = null;
             try {
                 logger.info("read log from queue");

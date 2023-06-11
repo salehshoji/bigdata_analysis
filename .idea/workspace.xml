@@ -4,11 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d58872b-a43d-4411-8b9b-e4dad1e39cf0" name="Changes" comment="test DatabaseServiceTests">
+    <list default="true" id="2d58872b-a43d-4411-8b9b-e4dad1e39cf0" name="Changes" comment="test AlertCreatorService">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/saleh/evaluator/DatabaseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/saleh/evaluator/DatabaseService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ir/saleh/evaluator/ReceiveKafkaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/saleh/evaluator/ReceiveKafkaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ir/saleh/rest/Alert.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/saleh/rest/Alert.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/evaluator/AlertCreatorTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/evaluator/AlertCreatorTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/saleh/evaluator/RuleEvaluatorMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/saleh/evaluator/RuleEvaluatorMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/saleh/injester/FileInjestorMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/saleh/injester/FileInjestorMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/saleh/injester/LogCreatorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/saleh/injester/LogCreatorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/saleh/injester/SendKafkaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/saleh/injester/SendKafkaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/saleh/injester/WatchDirService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/saleh/injester/WatchDirService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/saleh/log/LogDeserializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/saleh/log/LogDeserializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ir/saleh/rest/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ir/saleh/rest/MainController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,8 +87,8 @@
       <recent name="$PROJECT_DIR$/src/main/resources/log" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/resources/log" />
       <recent name="$PROJECT_DIR$/src/test/resources/checked_logs" />
+      <recent name="$PROJECT_DIR$/src/main/resources/log" />
       <recent name="$PROJECT_DIR$/src/test/resources/log" />
       <recent name="$PROJECT_DIR$/src/test/resources/logSource" />
       <recent name="$PROJECT_DIR$/src/test/resources" />
@@ -91,85 +97,91 @@
       <recent name="org.example" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.API">
-    <configuration name="FileInjestorMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ir.saleh.injester.FileInjestorMain" />
+  <component name="RunManager" selected="JUnit.WatchDirServiceTests.checkAddingNewFile">
+    <configuration name="LogCreatorTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="sahabino" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ir.saleh.injester.*" />
+          <option name="PATTERN" value="testInjester.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="testInjester" />
+      <option name="MAIN_CLASS_NAME" value="testInjester.LogCreatorTests" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RuleEvaluatorMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ir.saleh.evaluator.RuleEvaluatorMain" />
+    <configuration name="SendKafkaTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="sahabino" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ir.saleh.evaluator.*" />
+          <option name="PATTERN" value="testInjester.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="testInjester" />
+      <option name="MAIN_CLASS_NAME" value="testInjester.SendKafkaTests" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AlertCreatorTests.checkInterrupt" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="WatchDirServiceTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="sahabino" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="evaluator.*" />
+          <option name="PATTERN" value="testInjester.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="evaluator" />
-      <option name="MAIN_CLASS_NAME" value="evaluator.AlertCreatorTests" />
-      <option name="METHOD_NAME" value="checkInterrupt" />
+      <option name="PACKAGE_NAME" value="testInjester" />
+      <option name="MAIN_CLASS_NAME" value="testInjester.WatchDirServiceTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WatchDirServiceTests.checkAddingExistingFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="sahabino" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="testInjester.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="testInjester" />
+      <option name="MAIN_CLASS_NAME" value="testInjester.WatchDirServiceTests" />
+      <option name="METHOD_NAME" value="checkAddingExistingFile" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DatabaseServiceTests.checkInterrupt" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="WatchDirServiceTests.checkAddingNewFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="sahabino" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="evaluator.*" />
+          <option name="PATTERN" value="testInjester.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="evaluator" />
-      <option name="MAIN_CLASS_NAME" value="evaluator.DatabaseServiceTests" />
-      <option name="METHOD_NAME" value="checkInterrupt" />
+      <option name="PACKAGE_NAME" value="testInjester" />
+      <option name="MAIN_CLASS_NAME" value="testInjester.WatchDirServiceTests" />
+      <option name="METHOD_NAME" value="checkAddingNewFile" />
       <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="API" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <module name="sahabino" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="ir.saleh.rest.API" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ir.saleh.rest.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.API" />
-        <item itemvalue="Application.RuleEvaluatorMain" />
-        <item itemvalue="Application.FileInjestorMain" />
-        <item itemvalue="JUnit.AlertCreatorTests.checkInterrupt" />
-        <item itemvalue="JUnit.DatabaseServiceTests.checkInterrupt" />
+        <item itemvalue="JUnit.WatchDirServiceTests.checkAddingNewFile" />
+        <item itemvalue="JUnit.WatchDirServiceTests.checkAddingExistingFile" />
+        <item itemvalue="JUnit.WatchDirServiceTests" />
+        <item itemvalue="JUnit.SendKafkaTests" />
+        <item itemvalue="JUnit.LogCreatorTests" />
       </list>
     </recent_temporary>
   </component>
@@ -192,14 +204,7 @@
       <workItem from="1686242934586" duration="21062000" />
       <workItem from="1686332003693" duration="11902000" />
       <workItem from="1686399441861" duration="15966000" />
-      <workItem from="1686458159636" duration="21852000" />
-    </task>
-    <task id="LOCAL-00014" summary="implement rule 3">
-      <created>1686236281073</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1686236281073</updated>
+      <workItem from="1686458159636" duration="22107000" />
     </task>
     <task id="LOCAL-00015" summary="debug rule 3 implementation">
       <created>1686237125916</created>
@@ -537,7 +542,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686479069280</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="test AlertCreatorService">
+      <created>1686480026354</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1686480026354</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -578,9 +590,9 @@
     <MESSAGE value="test LogCreatorService" />
     <MESSAGE value="test SendKafkaService" />
     <MESSAGE value="debug interrupt Operation" />
-    <MESSAGE value="test AlertCreatorService" />
     <MESSAGE value="test DatabaseServiceTests" />
-    <option name="LAST_COMMIT_MESSAGE" value="test DatabaseServiceTests" />
+    <MESSAGE value="test AlertCreatorService" />
+    <option name="LAST_COMMIT_MESSAGE" value="test AlertCreatorService" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -598,7 +610,7 @@
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
-      <inline-watch fileUrl="file://$PROJECT_DIR$/src/main/java/ir/saleh/injester/FileInjestorMain.java" line="43">
+      <inline-watch fileUrl="file://$PROJECT_DIR$/src/main/java/ir/saleh/injester/FileInjestorMain.java" line="40">
         <watch expression="watchDirServiceThread" language="JAVA" />
       </inline-watch>
     </watches-manager>

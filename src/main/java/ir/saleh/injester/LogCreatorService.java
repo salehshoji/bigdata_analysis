@@ -17,7 +17,7 @@ import java.util.concurrent.BlockingQueue;
  * Create Log Objects
  * put logs to Queue
  */
-public class LogCreatorService extends Thread{
+public class LogCreatorService extends Thread {
 
     private boolean shouldContinue;
     private static final Logger logger = LoggerFactory.getLogger(LogCreatorService.class);
@@ -54,7 +54,7 @@ public class LogCreatorService extends Thread{
             } catch (InterruptedException e) {
                 shouldContinue = false;
                 logger.info("LogCreator interrupted");
-            }catch (IOException e){
+            } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
@@ -63,6 +63,7 @@ public class LogCreatorService extends Thread{
 
     /**
      * create Log Object
+     *
      * @param component
      * @param logStr
      * @return Log
