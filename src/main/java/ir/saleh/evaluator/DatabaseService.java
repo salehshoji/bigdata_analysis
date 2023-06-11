@@ -2,11 +2,15 @@ package ir.saleh.evaluator;
 
 import ir.saleh.Alert;
 import ir.saleh.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
 import java.util.concurrent.BlockingQueue;
 
 public class DatabaseService extends Thread{
+
+    private static final Logger logger = LoggerFactory.getLogger(AlertCreatorService.class);
 
     private final BlockingQueue<Alert> passAlertQueue;
 
@@ -16,13 +20,14 @@ public class DatabaseService extends Thread{
 
     @Override
     public void run() {
-        while (true) {
+        while (!isInterrupted() || !passAlertQueue.isEmpty()) {
             try {
                 passAlertQueue.take().pushToDatabase();
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+                interrupt();
+                logger.info("AlertCreatorService interrupted");
             }
         }
     }

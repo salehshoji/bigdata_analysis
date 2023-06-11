@@ -1,7 +1,10 @@
 package ir.saleh.evaluator;
 
 import ir.saleh.Alert;
+import ir.saleh.injester.WatchDirService;
 import ir.saleh.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -13,6 +16,7 @@ import java.util.concurrent.BlockingQueue;
 
 public class AlertCreatorService extends Thread {
 
+    private static final Logger logger = LoggerFactory.getLogger(AlertCreatorService.class);
     private final float duration; // second
     private final float countLimit; // number in TIME_LIMIT
     private final float rateLimit; // log per second
@@ -37,7 +41,7 @@ public class AlertCreatorService extends Thread {
 
     @Override
     public void run() {
-        while (true) {
+        while (!isInterrupted() || !passLogQueue.isEmpty()) {
             try {
                 Log log = passLogQueue.take();
                 if (!componentMap.containsKey(log.getComponent())) {
@@ -51,7 +55,8 @@ public class AlertCreatorService extends Thread {
                 }
                 checkComponentProblems(logList, log.getComponent());
             } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+                interrupt();
+                logger.info("AlertCreatorService interrupted");
             }
         }
     }
@@ -94,7 +99,7 @@ public class AlertCreatorService extends Thread {
                         "rule 3 in component" + component + " rate is "
                                 + (logList.size()) + "in less than second!!!" + " and its more than " + rateLimit);
             }
-        } else if (logList.size() / (ChronoUnit.SECONDS.between(logList.get(0).getDateTime(), logList.get(logList.size() - 1).getDateTime())) > rateLimit) {
+        } else if ((float)logList.size() / (ChronoUnit.SECONDS.between(logList.get(0).getDateTime(), logList.get(logList.size() - 1).getDateTime())) > rateLimit) {
             Alert alert = new Alert(component, "third_rule",
                     "rule 3 in component" + component + " rate is "
                             + (logList.size() / (ChronoUnit.SECONDS.between(logList.get(0).getDateTime(), logList.get(logList.size() - 1).getDateTime())))

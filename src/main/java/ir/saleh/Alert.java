@@ -61,7 +61,6 @@ public class Alert {
         String sql = "INSERT INTO alerts VALUES (" + "\"" + this.componentName + "\"" + ", " + "\"" + this.alertName +
                 "\"" + ", " + "\"" + this.description + "\"" + ")";
         stmt.executeUpdate(sql);
-        showDB();
     }
 
     private void checkTable(Connection conn, String alerts) throws SQLException {
@@ -76,13 +75,6 @@ public class Alert {
         }
     }
 
-    public static void showDB() throws SQLException {
-        String connectionUrl = "jdbc:mysql://localhost:3306/database_saleh";
-        Connection conn = DriverManager.getConnection(connectionUrl);
-
-        // Just pass the connection and the table name to printTable()
-        DBTablePrinter.printTable(conn, "alerts");
-    }
 
     public static boolean tableExists(Connection connection, String tableName) throws SQLException {
         DatabaseMetaData meta = connection.getMetaData();

@@ -45,6 +45,13 @@ public class RuleEvaluatorMain {
         alertCreatorServiceThread.start();
         databaseServiceThread.start();
 
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            receiveKafkaServiceThread.interrupt();
+            alertCreatorServiceThread.interrupt();
+            databaseServiceThread.interrupt();
+        }));
+
+
 
 
 

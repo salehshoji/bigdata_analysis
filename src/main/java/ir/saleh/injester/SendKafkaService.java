@@ -12,7 +12,7 @@ import java.util.concurrent.BlockingQueue;
 
 public class SendKafkaService extends Thread{
 
-    private static final Logger logger = LoggerFactory.getLogger(WatchDirService.class);
+    private static final Logger logger = LoggerFactory.getLogger(SendKafkaService.class);
     private final BlockingQueue<Log> passLogsQueue;
     private final String topic;
     private final Properties props;

@@ -13,7 +13,7 @@ import java.util.concurrent.BlockingQueue;
 
 public class LogCreatorService extends Thread{
 
-    private static final Logger logger = LoggerFactory.getLogger(WatchDirService.class);
+    private static final Logger logger = LoggerFactory.getLogger(LogCreatorService.class);
     private final BlockingQueue<Path> passPathQueue;
     private final BlockingQueue<Log> passLogsQueue;
     private String logDestPath;

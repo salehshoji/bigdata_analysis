@@ -31,13 +31,18 @@ public class FileInjestorMain {
         BlockingQueue<Path> passPathQueue = new ArrayBlockingQueue<>(10_000);
         BlockingQueue<Log> passLogQueue = new ArrayBlockingQueue<>(10_000);
 
-
         WatchDirService watchDirServiceThread = new WatchDirService(passPathQueue, fileInjesterConf.getLogPath());
         LogCreatorService logCreatorServiceThread = new LogCreatorService(passPathQueue, passLogQueue, fileInjesterConf.getLogDestPath());
         SendKafkaService sendKafkaServiceThread = new SendKafkaService(passLogQueue, topic, props);
         watchDirServiceThread.start();
         logCreatorServiceThread.start();
         sendKafkaServiceThread.start();
+
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            watchDirServiceThread.interrupt();
+            logCreatorServiceThread.interrupt();
+            sendKafkaServiceThread.interrupt();
+        }));
     }
 
 

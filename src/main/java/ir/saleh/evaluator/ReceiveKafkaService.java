@@ -1,7 +1,10 @@
 package ir.saleh.evaluator;
 
+import ir.saleh.injester.WatchDirService;
 import ir.saleh.log.Log;
 import org.apache.kafka.clients.consumer.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
 import java.util.List;
@@ -9,6 +12,8 @@ import java.util.Properties;
 import java.util.concurrent.BlockingQueue;
 
 public class ReceiveKafkaService extends Thread{
+
+    private static final Logger logger = LoggerFactory.getLogger(ReceiveKafkaService.class);
     private final BlockingQueue<Log> passLogQueue;
     private final Properties props;
     private final String topic;
@@ -25,7 +30,7 @@ public class ReceiveKafkaService extends Thread{
         final Consumer<String, Log> consumer = new KafkaConsumer<>(props);
         consumer.subscribe(List.of(topic));
 
-        while (true) {
+        while (!isInterrupted()) {
             ConsumerRecords<String, Log> records = consumer.poll(Duration.ofMillis(100));
             for (ConsumerRecord<String, Log> record : records) {
                 Log log = record.value();
@@ -33,7 +38,8 @@ public class ReceiveKafkaService extends Thread{
                 try {
                     passLogQueue.put(log);
                 } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
+                    interrupt();
+                    logger.info("ReceiveKafkaService interrupted");
                 }
             }
         }
