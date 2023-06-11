@@ -146,10 +146,10 @@
     </configuration>
     <configuration name="API" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="sahabino" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="ir.saleh.API" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ir.saleh.rest.API" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ir.saleh.*" />
+          <option name="PATTERN" value="ir.saleh.rest.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>

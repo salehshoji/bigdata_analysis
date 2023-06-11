@@ -1,7 +1,6 @@
 package ir.saleh.evaluator;
 
-import ir.saleh.Alert;
-import ir.saleh.log.Log;
+import ir.saleh.rest.Alert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

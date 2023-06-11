@@ -1,4 +1,4 @@
-package ir.saleh;
+package ir.saleh.rest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

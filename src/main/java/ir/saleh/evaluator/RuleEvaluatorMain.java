@@ -1,6 +1,6 @@
 package ir.saleh.evaluator;
 
-import ir.saleh.Alert;
+import ir.saleh.rest.Alert;
 import ir.saleh.injester.FileInjestorMain;
 import ir.saleh.log.Log;
 import org.apache.kafka.clients.consumer.Consumer;
@@ -11,9 +11,7 @@ import org.yaml.snakeyaml.constructor.Constructor;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;

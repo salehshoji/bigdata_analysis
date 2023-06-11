@@ -1,7 +1,6 @@
 package ir.saleh.evaluator;
 
-import ir.saleh.Alert;
-import ir.saleh.injester.WatchDirService;
+import ir.saleh.rest.Alert;
 import ir.saleh.log.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,4 +1,4 @@
-package ir.saleh;
+package ir.saleh.rest;
 
 
 import java.sql.*;
