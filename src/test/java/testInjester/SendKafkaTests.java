@@ -1,16 +1,13 @@
 package testInjester;
 
-import ir.saleh.injester.LogCreatorService;
 import ir.saleh.injester.SendKafkaService;
 import ir.saleh.log.Log;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Path;
 import java.util.Properties;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
@@ -19,6 +16,7 @@ public class SendKafkaTests {
 
     /**
      * check reading log queue
+     *
      * @throws InterruptedException
      * @throws IOException
      */
@@ -39,6 +37,7 @@ public class SendKafkaTests {
 
     /**
      * check interrupt should process data before shutdown
+     *
      * @throws InterruptedException
      * @throws IOException
      */

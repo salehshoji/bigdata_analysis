@@ -31,7 +31,6 @@ public class AlertCreatorService extends Thread {
     private final Map<String, List<Log>> componentMap;
 
 
-
     public AlertCreatorService(float duration, float countLimit, float rateLimit, List<String> errorList,
                                BlockingQueue<Log> passLogQueue, BlockingQueue<Alert> passAlertQueue) {
         this.duration = duration;
@@ -57,10 +56,10 @@ public class AlertCreatorService extends Thread {
                 List<Log> logList = componentMap.get(log.getComponent());
                 logList.add(log);
                 checkLogType(log);
-                while (ChronoUnit.SECONDS.between(logList.get(0).getDateTime(), log.getDateTime()) > duration) {
+                while (ChronoUnit.MINUTES.between(logList.get(0).getDateTime(), log.getDateTime()) > duration) {
                     logList.remove(0);
                 }
-                checkCountLimit(logList, log.getComponent());
+                checkCountLimit(logList);
                 checkRate(logList, log.getComponent());
 
             } catch (InterruptedException e) {
@@ -72,25 +71,26 @@ public class AlertCreatorService extends Thread {
 
     /**
      * checks first rule for input log
+     *
      * @param log
      * @throws InterruptedException
      */
-    private void checkLogType(Log log) throws InterruptedException {
+    public void checkLogType(Log log) throws InterruptedException {
         if (errorList.contains(log.getStatus())) {
             // ERROR alert function
-            Alert alert =new Alert(log.getComponent(), "first_rule ",
-                    "rule1 "+ log.getComponent() + log.getStatus() + "  " + "   " + log.getMessage() + " on " + log.getDateTime());
+            Alert alert = new Alert(log.getComponent(), "first_rule ",
+                    "rule1 " + log.getComponent() + log.getStatus() + "  " + "   " + log.getMessage() + " on " + log.getDateTime());
             passAlertQueue.put(alert);
         }
     }
 
     /**
      * checks second rules for input log list
+     *
      * @param logList
-     * @param component
      * @throws InterruptedException
      */
-    private void checkCountLimit(List<Log> logList, String component) throws InterruptedException {
+    public void checkCountLimit(List<Log> logList) throws InterruptedException {
         // rule 2
         LocalDateTime startTime = null;
         int startIndex = 0;
@@ -98,13 +98,13 @@ public class AlertCreatorService extends Thread {
             if (startTime == null) {
                 startTime = logList.get(i).getDateTime();
             } else {
-                while (ChronoUnit.SECONDS.between(startTime, logList.get(i).getDateTime()) > duration) {
+                while (ChronoUnit.MINUTES.between(startTime, logList.get(i).getDateTime()) > duration) {
                     startIndex += 1;
                     startTime = logList.get(startIndex).getDateTime();
                 }
                 if (i - startIndex > countLimit) {
-                    Alert alert = new Alert(component, "second_alert",
-                            ("rule2 in component" + component + "from " + startTime + " to "
+                    Alert alert = new Alert(logList.get(0).getComponent(), "second_alert",
+                            ("rule2 in component" + logList.get(0).getComponent() + "from " + startTime + " to "
                                     + logList.get(i).getDateTime() + " we have " + (i - startIndex) + "error"));
                     passAlertQueue.put(alert);
                 }
@@ -114,11 +114,12 @@ public class AlertCreatorService extends Thread {
 
     /**
      * checks third rule for input log list
+     *
      * @param logList
      * @param component
      * @throws InterruptedException
      */
-    private void checkRate(List<Log> logList, String component) throws InterruptedException {
+    public void checkRate(List<Log> logList, String component) throws InterruptedException {
         // rule 3
         if ((ChronoUnit.MINUTES.between(logList.get(0).getDateTime(), logList.get(logList.size() - 1).getDateTime()) == 0)) {
             if (logList.size() > rateLimit) {
